@@ -38,6 +38,7 @@ INCLUDE(CMakePackageConfigHelpers)
     ${hypercube_DIRNAME_lib}
   PATH_VARS
    hypercube_DIRNAME_include
+   hypercube_DIRNAME_bin
   )
   
   INSTALL(
