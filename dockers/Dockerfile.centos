@@ -7,4 +7,4 @@ RUN git clone http://zapad.Stanford.EDU/bob/hypercube.git   /opt/hypercube/src &
     cd /opt/hypercube/build &&\
     cmake ../src &&\
     make install &&\
-    rm -rf /opt/hypercube
+    rm -rf /opt/hypercube/build

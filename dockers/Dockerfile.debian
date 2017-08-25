@@ -1,23 +1,10 @@
 From debian:latest
 MAINTAINER Bob Clapp <bob@sep.stanford.edu>
-RUN apt-get update &&\
-   apt-get -y install gcc make git python &&\
+RUN apt-get update install git make cmake gcc &&\
   apt-get -y clean
-RUN mkdir /opt/RSF
-RUN git clone https://github.com/ahay/src /opt/RSF/src&&\
-   cd /opt/RSF/src && \
-    RSFROOT=/opt/RSF ./configure&&\
+RUN git clone http://zapad.Stanford.EDU/bob/hypercube.git   /opt/hypercube/src && \
+    mkdir /opt/hypercube/build && \
+    cd /opt/hypercube/build &&\
+    cmake ../src &&\
     make install &&\
-    mv /opt/RSF/bin/scons /tmp/scons &&\
-   rm -rf /opt/RSF/share /opt/RSF/include /opt/RSF/bin/* /opt/RSF/lib/lib*&&\
-   mv /tmp/scons /opt/RSF/bin/scons
-RUN   apt-get update &&\
-  apt-get -y  install  texlive environment-modules texlive-latex-base texlive-xetex   &&\
-  apt-get -y clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man/?? /usr/share/man/??_*
-RUN echo export PATH=$PATH:/opt/RSF/bin >> /root/.bashrc
-RUN echo export PYTHONPATH=/opt/RSF/lib/python2.7/dist-packages >>/root/.bashrc
-RUN ln -s /opt/RSF/lib/python2.7/dist-packages/rsf/tex.py /opt/RSF/lib/python2.7/dist-packages/rsftex.py
-RUN git clone http://zapad.Stanford.EDU/SEP-external/SEP-tex.git /usr/local/share/texmf/SEP && \
-  rm -rf /usr/local/share/texmf/SEP/dockers  && \
-  cd /usr/local/share/texmf/SEP &&  mv * .??* ../
-RUN texhash
+    rm -rf /opt/hypercube/build
