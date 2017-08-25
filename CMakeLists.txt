@@ -29,7 +29,8 @@ endif()
 enable_language(CXX)
 
 
-
+ SET(hypercube_DIRNAME_lib     "lib")
+ SET(hypercube_DIRNAME_include "include")
 INCLUDE(CMakePackageConfigHelpers)
   CONFIGURE_PACKAGE_CONFIG_FILE(
   "${CMAKE_CURRENT_SOURCE_DIR}/hypercubeConfig.cmake.in"
@@ -37,9 +38,10 @@ INCLUDE(CMakePackageConfigHelpers)
   INSTALL_DESTINATION
     ${hypercube_DIRNAME_lib}
   PATH_VARS
-   hypercube_DIRNAME_include
-   hypercube_DIRNAME_bin
+    hypercube_DIRNAME_include
   )
+
+
   
   INSTALL(
   FILES
