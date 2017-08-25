@@ -30,6 +30,7 @@ enable_language(CXX)
 
 
 
+INCLUDE(CMakePackageConfigHelpers)
   CONFIGURE_PACKAGE_CONFIG_FILE(
   "${CMAKE_CURRENT_SOURCE_DIR}/hypercubeConfig.cmake.in"
   "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
