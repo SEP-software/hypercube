@@ -4,7 +4,7 @@ project(hypercube)
 set(SOURCES axis.cpp hypercube.cpp
  
 )
-set(INCLUDES axis.h hypercube.cpp
+set(INCLUDES axis.h hypercube.h
 )
 
 
