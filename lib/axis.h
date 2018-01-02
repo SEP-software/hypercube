@@ -21,6 +21,7 @@ class axis {
     d = t.d;
     label = t.label;
     unit = t.unit;
+    return *this;
   }
 
   void infoStream(std::stringstream &x);

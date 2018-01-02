@@ -12,6 +12,7 @@ class hypercube {
   hypercube &operator=(const hypercube &t) {
     axes = t.getAxes();
     n123 = t.getN123();
+    return *this;
   }
 
   hypercube(const std::shared_ptr<hypercube> &hyper);
