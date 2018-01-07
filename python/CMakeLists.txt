@@ -21,7 +21,10 @@ INCLUDE_DIRECTORIES(${GENERIC_EXPORT_INC_DIRS})
 SET(CMAKE_SWIG_FLAGS "")
 
 SET_SOURCE_FILES_PROPERTIES(hypercube_int.i PROPERTIES CPLUSPLUS ON)
-SWIG_ADD_LIBRARY(hypercube_int LANGUAGE python TYPE MODULE SOURCES hypercube_int.i ../lib/hypercube.cpp)
+#SWIG_ADD_LIBRARY(hypercube_int LANGUAGE python TYPE MODULE SOURCES hypercube_int.i ../lib/hypercube.cpp)
+SWIG_ADD_MODULE(hypercube_int  python  hypercube_int.i ../lib/hypercube.cpp)
+
+
 SWIG_LINK_LIBRARIES(hypercube_int hypercube ${PYTHON_LIBRARIES})
 
 
