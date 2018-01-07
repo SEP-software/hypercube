@@ -2,6 +2,7 @@
 import sys
 import string
 import os
+import shutil
 from subprocess import Popen,PIPE
 
 def help():
@@ -38,19 +39,18 @@ def checkArgs(required,args):
     help()
     sys.exit(-1)
 
-def runCommand(args,dir):
+def runCommand(args,dir,fail):
    """
     Execute the external command and get its exitcode, stdout and stderr.
     """
-   print dir,"\n",string.join(args)
    proc = Popen(args, stdout=PIPE, stderr=PIPE,cwd=dir)
    out, err = proc.communicate()
    exitcode = proc.returncode
-   if exitcode!=0:
+   if exitcode!=0 and fail:
       print "Command failed \n"+string.join(args)
       print "\n Stdout\n"+out+"\nErr\n"+err
       sys.exit(-1)
-   print "Run \nOUT\n%s\nERR\n%s"%(out,err)   
+   
 
 def build(args):
    if  "build" not in args.keys():
@@ -58,11 +58,15 @@ def build(args):
    cwd = os.getcwd()
    buildDir=os.path.dirname(os.path.realpath(sys.argv[0]))
    parDir=buildDir+"/../"
-   runCommand(["rm ","-rf",args["build"]],cwd)
-   runCommand(["mkdir","-p",args["build"]],cwd)
-   runCommand(["cmake","-DCMAKE_INSTALL_PREFIX=%s"%args["hypercube"],parDir],args["build"])
-   runCommand(["make"],args["build"])
-   runCommand(["make","install"],args["build"])
+   runCommand(["ls",args["build"]],cwd,False)
+   if os.path.exists(args["build"]):
+       shutil.rmtree(args["build"])
+   if os.path.exists(args["hypercube"]):
+       shutil.rmtree(args["hypercube"])
+   runCommand(["mkdir","-p",args["build"]],cwd,True)
+   runCommand(["cmake","-DCMAKE_INSTALL_PREFIX=%s"%args["hypercube"],parDir],args["build"],True)
+   runCommand(["make"],args["build"],True)
+   runCommand(["make","install"],args["build"],True)
 
 
 req=["hypercube"]
