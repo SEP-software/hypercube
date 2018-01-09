@@ -2,16 +2,18 @@
 import sys
 import string
 import os
+import re
 import shutil
 from subprocess import Popen,PIPE
 
 def help():
-   print "build[build] - Directory to build project in"
-   print "basePrefix - Prefix  where all local packages are installed"
-   print "hypercube [basePrefix/hypercube]  - Where to instal hypercube"
-   print "hypercube must be defined "
-   print "Specify arguments on the command line in the form [basePrefix='/opt']"
-   print "\n Example \n"+sys.argv[0]+" basePrefix='/opt'"
+   print("build[build] - Directory to build project in")
+   print("basePrefix - Prefix  where all local packages are installed")
+   print("hypercube [basePrefix/hypercube]  - Where to instal hypercube")
+   print("hypercube must be defined ")
+   print("defines=[arg=val,arg2=val2]")
+   print("Specify arguments on the command line in the form [basePrefix='/opt']")
+   print("\n Example \n"+sys.argv[0]+" basePrefix='/opt'")
 
 
 def buildArgs():
@@ -35,7 +37,7 @@ def checkArgs(required,args):
     if i not in args.keys(): 
       notDefined.append(i)
   if len(notDefined)> 0: 
-    print "The following parameters were not set "+string.join(notDefined)
+    print("The following parameters were not set "+" ".join(notDefined))
     help()
     sys.exit(-1)
 
@@ -43,12 +45,14 @@ def runCommand(args,dir,fail):
    """
     Execute the external command and get its exitcode, stdout and stderr.
     """
+   print(args)
    proc = Popen(args, stdout=PIPE, stderr=PIPE,cwd=dir)
    out, err = proc.communicate()
    exitcode = proc.returncode
    if exitcode!=0 and fail:
-      print "Command failed \n"+string.join(args)
-      print "\n Stdout\n"+out+"\nErr\n"+err
+      print("Command failed \n"+" ",join(args))
+      print(out.decode())
+      print(err.decode())
       sys.exit(-1)
    
 
@@ -64,7 +68,27 @@ def build(args):
    if os.path.exists(args["hypercube"]):
        shutil.rmtree(args["hypercube"])
    runCommand(["mkdir","-p",args["build"]],cwd,True)
-   runCommand(["cmake","-DCMAKE_INSTALL_PREFIX=%s"%args["hypercube"],parDir],args["build"],True)
+   if "defines" in args.keys():
+     x=["cmake","-DCMAKE_INSTALL_PREFIX=%s"%args["hypercube"]]
+     y=re.compile("\[(.+)\]")
+     z=y.search(args["defines"])
+     if not z:
+        print (args["defines"])
+        print ("Trouble parsing defines")
+        sys.exit(-1)
+     m=z.group(1).split(",")
+     for d in m:
+       c=d.split("=")
+       if len(c)!=2:
+          print ("trouble parsing defines")
+          print (d)
+          sys.exit(-1)
+       x.append("-D%s=%s"%(c[0],c[1]))
+     x.append(parDir)
+     print ("X",x)
+     runCommand(x,args["build"],True)
+   else:
+     runCommand(["cmake","-DCMAKE_INSTALL_PREFIX=%s"%args["hypercube"],parDir],args["build"],True)
    runCommand(["make"],args["build"],True)
    runCommand(["make","install"],args["build"],True)
 

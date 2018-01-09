@@ -1,4 +1,4 @@
-project(Generic-IO)
+project(hypercube-python)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
@@ -31,7 +31,7 @@ SWIG_LINK_LIBRARIES(hypercube_int hypercube ${PYTHON_LIBRARIES})
 
 
 
-install( TARGETS _hypercube_int DESTINATION lib)
+#install( TARGETS _hypercube_int DESTINATION lib)
 install( FILES ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py  ${CMAKE_CURRENT_BINARY_DIR}/hypercube_int.py  DESTINATION lib/python/SEP)
 
 
