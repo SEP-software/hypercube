@@ -31,8 +31,9 @@ SWIG_LINK_LIBRARIES(hypercube_int hypercube ${PYTHON_LIBRARIES})
 
 
 
-#install( TARGETS _hypercube_int DESTINATION lib)
-install( FILES ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py  ${CMAKE_CURRENT_BINARY_DIR}/hypercube_int.py  DESTINATION lib/python/SEP)
+install( TARGETS _hypercube_int DESTINATION lib/python)
+
+install( FILES  ${CMAKE_CURRENT_BINARY_DIR}/hypercube_int.py  DESTINATION lib/python)
 
 
 
