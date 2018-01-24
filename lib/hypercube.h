@@ -14,20 +14,20 @@ class hypercube {
     n123 = t.getN123();
     return *this;
   }
-
-  hypercube(const std::shared_ptr<hypercube> &hyper);
+  hypercube(const int ndim);
+  hypercube(const std::shared_ptr<hypercube> hyper);
   hypercube(const SEP::axis &a1) {
     std::vector<SEP::axis> as;
     as.push_back(a1);
     setAxes(as);
   }
-  hypercube(const SEP::axis &a1, SEP::axis &a2) {
+  hypercube(const SEP::axis &a1, const SEP::axis &a2) {
     std::vector<SEP::axis> as;
     as.push_back(a1);
     as.push_back(a2);
     setAxes(as);
   }
-  hypercube(const SEP::axis &a1, SEP::axis &a2, SEP::axis &a3) {
+  hypercube(const SEP::axis &a1, const SEP::axis &a2, const SEP::axis &a3) {
     std::vector<SEP::axis> as;
     as.push_back(a1);
     as.push_back(a2);
@@ -37,7 +37,7 @@ class hypercube {
   hypercube(const std::vector<SEP::axis> &axes);
   void setAxes(const std::vector<SEP::axis> &axes);
   void setAxis(const int idim, const SEP::axis &ax);
-  SEP::axis getAxis(int idim) const;
+  SEP::axis getAxis(const int idim) const;
   long long getN123() const { return n123; }
   void infoStream(std::stringstream &x);
   std::vector<int> getNs() const;
@@ -49,7 +49,7 @@ class hypercube {
 
   void initNd(const std::vector<SEP::axis> &axes);
   std::vector<SEP::axis> returnAxes(const int nmax) const;
-  int getNdim() const { return axes.size(); }
+  int getNdim() const { return (int)axes.size(); }
   int getNdimG1() const;
   std::vector<SEP::axis> getAxes() const;
   std::vector<SEP::axis> getAxes(const int nmin) const;
@@ -60,5 +60,5 @@ class hypercube {
   long long n123;
   std::vector<SEP::axis> axes;
 };
-}
+}  // namespace SEP
 #endif
