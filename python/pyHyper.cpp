@@ -4,7 +4,7 @@ namespace py = pybind11;
 namespace SEP {
 
 PYBIND11_MODULE(pyHypercube, clsHyper) {
-  py::class_<axis, std::shared_ptr<axis>>(clsHyper, "axis")  //
+  py::class_<axis>(clsHyper, "axis")  //
       .def(py::init<>(), "Initlialize an empty axis")
       .def(py::init<const int>(), "initialize an axis by only its size")
       .def(py::init<const int, const float, const float>(),
@@ -22,7 +22,7 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
       .def_readwrite("label", &axis::label)
       .def_readwrite("unit", &axis::unit);
 
-  py::class_<hypercube>(clsHyper, "hypercube")
+  py::class_<hypercube, std::shared_ptr<hypercube>>(clsHyper, "hypercube")
       .def(py::init<>(), "Initialize with an empty hypercube")
       .def(py::init<std::shared_ptr<hypercube>>(),
            "Initialize a hypercube from a shared_ptr hypercube")

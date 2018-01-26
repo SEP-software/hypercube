@@ -45,7 +45,10 @@ class hypercube {
 
   void addAxis(axis &a) { axes.push_back(a); }
   void deallocate() { axes.clear(); }
-  ~hypercube() { this->deallocate(); }
+  ~hypercube() {
+    std::cerr << "in delete hypercube" << std::endl;
+    this->deallocate();
+  }
 
   void initNd(const std::vector<SEP::axis> &axes);
   std::vector<SEP::axis> returnAxes(const int nmax) const;
