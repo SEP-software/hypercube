@@ -12,5 +12,5 @@ pybind11_add_module(pyHypercube MODULE pyHyper.cpp)
 target_link_libraries(pyHypercube PRIVATE  hypercube)
 
 install( TARGETS pyHypercube DESTINATION lib/python)
-
+install(FILES Hypercube.py DESTINATION lib/python)
 endif(pybind11_FOUND)

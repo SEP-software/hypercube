@@ -27,15 +27,16 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
       .def(py::init<std::shared_ptr<hypercube>>(),
            "Initialize a hypercube from a shared_ptr hypercube")
       .def(py::init<const hypercube &>(), "Initialize from another hypercube")
+      .def(py::init<const std::vector<axis> &>(),
+           "Initialize from a vector of arrays")
       .def(py::init<const axis &>(), "Initalize from a single axis")
       .def(py::init<const axis &, const axis &>(), "Initalize from two axes")
       .def(py::init<const int>(), "Initialize a n-d hypercube")
       .def(py::init<const axis &, const axis &, const axis &>(),
            "Initalize from three axes")
-      .def(
-          "setAxes",
-          (void (hypercube::*)(const std::vector<axis> &)) & hypercube::setAxes,
-          "Setup a hypercube from a series of axes")
+      .def(py::init<const axis &, const axis &, const axis &, const axis &>(),
+           "Initalize from four axes")
+
       .def("setAxis",
            (void (hypercube::*)(const int, const axis &)) & hypercube::setAxis,
            "Setup a hypercube from a series of axes")

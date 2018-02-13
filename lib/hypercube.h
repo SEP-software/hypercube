@@ -34,6 +34,16 @@ class hypercube {
     as.push_back(a3);
     setAxes(as);
   }
+
+  hypercube(const SEP::axis &a1, const SEP::axis &a2, const SEP::axis &a3,
+            const SEP::axis &a4) {
+    std::vector<SEP::axis> as;
+    as.push_back(a1);
+    as.push_back(a2);
+    as.push_back(a3);
+    as.push_back(a4);
+    setAxes(as);
+  }
   hypercube(const std::vector<SEP::axis> &axes);
   void setAxes(const std::vector<SEP::axis> &axes);
   void setAxis(const int idim, const SEP::axis &ax);
@@ -46,7 +56,6 @@ class hypercube {
   void addAxis(axis &a) { axes.push_back(a); }
   void deallocate() { axes.clear(); }
   ~hypercube() {
-    std::cerr << "in delete hypercube" << std::endl;
     this->deallocate();
   }
 
