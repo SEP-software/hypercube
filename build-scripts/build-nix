@@ -9,7 +9,7 @@ from subprocess import Popen,PIPE
 def help():
    print("build[build] - Directory to build project in")
    print("basePrefix - Prefix  where all local packages are installed")
-   print("hypercube [basePrefix/hypercube]  - Where to instal hypercube")
+   print("hypercube [basePrefix]  - Where to instal hypercube")
    print("hypercube must be defined ")
    print("defines=[arg=val,arg2=val2]")
    print("Specify arguments on the command line in the form [basePrefix='/opt']")
@@ -28,7 +28,7 @@ def defaultArgs(required,args):
   if "basePrefix" in args.keys():
      for m in required:
        if m not in args.keys():
-         args[m]=args["basePrefix"]+"/"+m
+         args[m]=args["basePrefix"]
   return args
 
 def checkArgs(required,args):
@@ -65,8 +65,6 @@ def build(args):
    runCommand(["ls",args["build"]],cwd,False)
    if os.path.exists(args["build"]):
        shutil.rmtree(args["build"])
-   if os.path.exists(args["hypercube"]):
-       shutil.rmtree(args["hypercube"])
    runCommand(["mkdir","-p",args["build"]],cwd,True)
    if "defines" in args.keys():
      x=["cmake","-DCMAKE_INSTALL_PREFIX=%s"%args["hypercube"]]
