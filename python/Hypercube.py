@@ -19,7 +19,7 @@ class axis:
 			self.n=kw["axis"].n
 			self.o=kw["axis"].o
 			self.d=kw["axis"].d
-			self.label=kw["axis"].nlabel
+			self.label=kw["axis"].label
 
 	def getCpp(self):
 		return pyHypercube.axis(self.n, self.o, self.d, self.label)
@@ -52,8 +52,8 @@ class hypercube:
 			for i in range(len(os)):
 				self.axes[i].label=kw["labels"][i]
 		if "hypercube" in kw:
-			for i in range(self.getNdim()):
-				a=axis(self.getAxis(i+1))
+			for i in range(kw["hypercube"].getNdim()):
+				a=axis(axis=kw["hypercube"].getAxis(i+1))
 				self.axes.append(a)
 
 	def getNdim(self):
