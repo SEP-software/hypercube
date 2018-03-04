@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
-project(hypercube)
+project(logger)
 
-set(SOURCES axis.cpp hypercube.cpp
+set(SOURCES logger.cpp
  
 )
-set(INCLUDES axis.h hypercube.h
+set(INCLUDES logger.h
 )
 
 
-add_library(hypercube ${SOURCES} ${INCLUDES})
+add_library(logger ${SOURCES} ${INCLUDES})
 install(FILES ${INCLUDES} DESTINATION include)
-install(TARGETS hypercube DESTINATION lib EXPORT hypercubeExports)
+install(TARGETS logger DESTINATION lib EXPORT loggerExports)

@@ -1,13 +1,13 @@
-project(hypercube)
+project(logger)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
 # configure a header file to pass some of the CMake settings
 
-set(hypercube_MAJOR_VERSION 0)
-set(hypercube_MINOR_VERSION 0)
-set(hypercube_VERSION_STRING
-  ${hypercube_MAJOR_VERSION}.${hypercube_MINOR_VERSION})
+set(logger_MAJOR_VERSION 0)
+set(logger_MINOR_VERSION 0)
+set(logger_VERSION_STRING
+  ${logger_MAJOR_VERSION}.${logger_MINOR_VERSION})
 
 
 
@@ -30,24 +30,24 @@ endif()
 enable_language(CXX)
 
 
- SET(hypercube_DIRNAME_lib     "lib")
- SET(hypercube_DIRNAME_include "include")
+ SET(logger_DIRNAME_lib     "lib")
+ SET(logger_DIRNAME_include "include")
 INCLUDE(CMakePackageConfigHelpers)
   CONFIGURE_PACKAGE_CONFIG_FILE(
-  "${CMAKE_CURRENT_SOURCE_DIR}/hypercubeConfig.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
+  "${CMAKE_CURRENT_SOURCE_DIR}/loggerConfig.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/loggerConfig.cmake"
   INSTALL_DESTINATION
-    ${hypercube_DIRNAME_lib}
+    ${logger_DIRNAME_lib}
   PATH_VARS
-    hypercube_DIRNAME_include
-    hypercube_DIRNAME_lib
+    logger_DIRNAME_include
+    logger_DIRNAME_lib
   )
 
 
   
   INSTALL(
   FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/loggerConfig.cmake
   DESTINATION
     lib
   )
@@ -55,9 +55,9 @@ INCLUDE(CMakePackageConfigHelpers)
 
   INSTALL(
   EXPORT
-   hypercubeExports
+   loggerExports
   DESTINATION
-    ${hypercube_DIRNAME_lib}
+    ${logger_DIRNAME_lib}
   )
   
 add_subdirectory(python)
