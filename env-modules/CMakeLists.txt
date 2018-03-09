@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
-project(logger-python)
+project(hypercube-python)
 
 
 
-  set(min  "${CMAKE_CURRENT_SOURCE_DIR}/logger.in")
-  set(mout "${CMAKE_CURRENT_BINARY_DIR}/logger")
+  set(min  "${CMAKE_CURRENT_SOURCE_DIR}/hypercube.in")
+  set(mout "${CMAKE_CURRENT_BINARY_DIR}/hypercube")
   configure_file (${min} ${mout})
 
 

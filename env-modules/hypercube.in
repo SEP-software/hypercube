@@ -11,7 +11,7 @@ proc ModulesHelp { } {
 }
 
 module-whatis "(Category_______) Multi-dimensionality cube"
-module-whatis "(Name___________) logger"
+module-whatis "(Name___________) hypecube"
 module-whatis "(Version________) 1.0"
 module-whatis "(Authorship_____) Bob"
 
@@ -19,6 +19,6 @@ module-whatis "(Authorship_____) Bob"
 # for Tcl script use only
 set     version      "3.2.10"
 
-set logger @CMAKE_INSTALL_PREFIX@
-append-path PYTHONPATH $logger/lib/python
-prepend-path LD_LIBRARY_PATH $logger/lib
+set hyper @CMAKE_INSTALL_PREFIX@
+append-path PYTHONPATH $hyper/lib/python
+prepend-path LD_LIBRARY_PATH $hyper/lib
