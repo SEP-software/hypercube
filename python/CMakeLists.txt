@@ -9,7 +9,7 @@ if (pybind11_FOUND)
 include_directories(${PYTHON_INCLUDE_DIR})
 include_directories(${pybind11_INCLUDE_DIR})
 pybind11_add_module(pyLogger MODULE pyLogger.cpp)
-target_link_libraries(pyLogger PRIVATE  Logger)
+target_link_libraries(pyLogger PRIVATE  logger)
 
 install( TARGETS pyLogger DESTINATION lib/python)
 install(FILES Logger.py DESTINATION lib/python)

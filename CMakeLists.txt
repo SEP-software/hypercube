@@ -60,7 +60,8 @@ INCLUDE(CMakePackageConfigHelpers)
     ${logger_DIRNAME_lib}
   )
   
-add_subdirectory(python)
 add_subdirectory(lib)
+add_subdirectory(python)
+
 add_subdirectory(env-modules)
 

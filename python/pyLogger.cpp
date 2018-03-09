@@ -7,10 +7,8 @@ PYBIND11_MODULE(pyLogger, clsLog) {
   py::class_<buffer, std::shared_ptr<buffer>>(clsLog, "buffer")
       .def("get", (std::vector<std::string>(buffer::*)()) & buffer::get,
            "Get the buffer contents");
-  std::vector<std::string> get();
   py::class_<logger>(clsLog, "logger")  //
-      .def("get", (logger(logger::*)()) & logger::get,
-           "Get the singleton object")
+      .def("get", &logger::get)
       .def("addMessage",
            (void (logger::*)(const std::string &, const std::string &)) &
                logger::addMessage,
