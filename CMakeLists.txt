@@ -2,6 +2,7 @@ project(hypercube)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
+
 # configure a header file to pass some of the CMake settings
 
 set(hypercube_MAJOR_VERSION 0)
@@ -10,6 +11,17 @@ set(hypercube_VERSION_STRING
   ${hypercube_MAJOR_VERSION}.${hypercube_MINOR_VERSION})
 
 
+MESSAGE(${CMAKE_INSTALL_PREFIX} " oerwe r")
+
+include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
+ExternalProject_Add (
+       PYBIND11
+       CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+       GIT_SHALLOW true
+      GIT_REPOSITORY "https://github.com/pybind/pybind11.git"
+            INSTALL_DIR  ${CMAKE_INSTALL_PREFIX}
+
+     )
 
  
 # add the binary tree to the search path for include files
@@ -29,6 +41,7 @@ endif()
 
 enable_language(CXX)
 
+ SET(hypercube_DIRNAME_cmake     "cmake")
 
  SET(hypercube_DIRNAME_lib     "lib")
  SET(hypercube_DIRNAME_include "include")
@@ -41,6 +54,7 @@ INCLUDE(CMakePackageConfigHelpers)
   PATH_VARS
     hypercube_DIRNAME_include
     hypercube_DIRNAME_lib
+    hypercube_DIRNAME_cmake
   )
 
 
@@ -49,7 +63,7 @@ INCLUDE(CMakePackageConfigHelpers)
   FILES
     ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
   DESTINATION
-    lib
+    cmake
   )
 
 
@@ -57,7 +71,7 @@ INCLUDE(CMakePackageConfigHelpers)
   EXPORT
    hypercubeExports
   DESTINATION
-    ${hypercube_DIRNAME_lib}
+    ${hypercube_DIRNAME_cmake}
   )
   
 add_subdirectory(lib)
