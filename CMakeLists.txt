@@ -4,6 +4,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
 
 # configure a header file to pass some of the CMake settings
+    find_package(Python VERSION 3) 
+
 
 set(hypercube_MAJOR_VERSION 0)
 set(hypercube_MINOR_VERSION 0)
@@ -11,13 +13,11 @@ set(hypercube_VERSION_STRING
   ${hypercube_MAJOR_VERSION}.${hypercube_MINOR_VERSION})
 
 
-MESSAGE(${CMAKE_INSTALL_PREFIX} " oerwe r")
 
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 ExternalProject_Add (
        PYBIND11
        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
-       GIT_SHALLOW true
       GIT_REPOSITORY "https://github.com/pybind/pybind11.git"
             INSTALL_DIR  ${CMAKE_INSTALL_PREFIX}
 
