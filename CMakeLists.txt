@@ -4,7 +4,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
 
 # configure a header file to pass some of the CMake settings
-    find_package(Python VERSION 3) 
+find_package( PythonInterp 3 REQUIRED )
 
 
 set(hypercube_MAJOR_VERSION 0)
