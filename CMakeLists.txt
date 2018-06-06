@@ -9,20 +9,24 @@ find_package( PythonInterp 3 REQUIRED )
 
 set(hypercube_MAJOR_VERSION 0)
 set(hypercube_MINOR_VERSION 0)
-set(hypercube_VERSION_STRING
-  ${hypercube_MAJOR_VERSION}.${hypercube_MINOR_VERSION})
+set(hypercube_VERSION_STRING    ${hypercube_MAJOR_VERSION}.${hypercube_MINOR_VERSION})
 
 
+#Install PYBIND11 
 
-include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
-ExternalProject_Add (
+find_package(pybind11)  
+if (pybind11_FOUND)
+
+else(pybind11_FOUND)
+  include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
+  ExternalProject_Add (
        PYBIND11
        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
       GIT_REPOSITORY "https://github.com/pybind/pybind11.git"
             INSTALL_DIR  ${CMAKE_INSTALL_PREFIX}
 
      )
-
+endif(pybind11_FOUND)
  
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
