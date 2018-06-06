@@ -16,8 +16,9 @@ set(hypercube_VERSION_STRING    ${hypercube_MAJOR_VERSION}.${hypercube_MINOR_VER
 
 find_package(pybind11)  
 if (pybind11_FOUND)
-
+  message("Found pybind11 installed")
 else(pybind11_FOUND)
+  message("Installing pybind11")
   include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
   ExternalProject_Add (
        PYBIND11
