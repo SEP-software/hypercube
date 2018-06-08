@@ -8,7 +8,7 @@ find_package( PythonInterp 3 REQUIRED )
 
 
 set(hypercube_MAJOR_VERSION 0)
-set(hypercube_MINOR_VERSION 0)
+set(hypercube_MINOR_VERSION 2)
 set(hypercube_VERSION_STRING    ${hypercube_MAJOR_VERSION}.${hypercube_MINOR_VERSION})
 
 
@@ -69,3 +69,12 @@ add_subdirectory(python)
 
 add_subdirectory(env-modules)
 
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
+set(CPACK_PACKAGE_VERSION_MAJOR "${hypercube_MAJOR_VERSION}")
+set(CPACK_PACKAGE_VERSION_MINOR "${hypercube_MINOR_VERSION}")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_PACKAGE_NAME "hypercube")
+set(CPACK_PACKAGE_CONTACT "Robert Clapp")
+include(CPack)
