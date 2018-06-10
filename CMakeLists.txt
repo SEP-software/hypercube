@@ -40,7 +40,7 @@ INCLUDE(CMakePackageConfigHelpers)
   "${CMAKE_CURRENT_SOURCE_DIR}/hypercubeConfig.cmake.in"
   "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
   INSTALL_DESTINATION
-    ${hypercube_DIRNAME_lib}
+    ${hypercube_DIRNAME_cmake}
   PATH_VARS
     hypercube_DIRNAME_include
     hypercube_DIRNAME_lib
