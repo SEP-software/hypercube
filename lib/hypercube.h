@@ -34,7 +34,10 @@ class hypercube {
     as.push_back(a3);
     setAxes(as);
   }
-
+  std::shared_ptr <hypercube> clone(){
+   std::shared_ptr<hypercube> a (new hypercube(*this));
+   return a;
+ }
   hypercube(const SEP::axis &a1, const SEP::axis &a2, const SEP::axis &a3,
             const SEP::axis &a4) {
     std::vector<SEP::axis> as;
