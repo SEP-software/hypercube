@@ -34,7 +34,7 @@ class hypercube {
     as.push_back(a3);
     setAxes(as);
   }
-  std::shared_ptr <hypercube> clone(){
+  const std::shared_ptr <hypercube> clone(){
    std::shared_ptr<hypercube> a (new hypercube(*this));
    return a;
  }
