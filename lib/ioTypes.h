@@ -5,6 +5,7 @@ enum dataType { DATA_BYTE, DATA_INT, DATA_FLOAT, DATA_COMPLEX, DATA_DOUBLE,DATA_
 
 size_t getDataTypeSize(dataType typ);
 dataType toElementType(const std::string &name) ;
+std::string getTypeString(dataType typ);
 
 
 
