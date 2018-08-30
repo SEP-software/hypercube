@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
 project(hypercube)
 
-set(SOURCES axis.cpp hypercube.cpp
+set(SOURCES axis.cpp hypercube.cpp ioTypes.cc
  
 )
-set(INCLUDES axis.h hypercube.h
+set(INCLUDES axis.h hypercube.h ioTypes.h
 )
 
 
