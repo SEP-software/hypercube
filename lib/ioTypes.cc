@@ -3,7 +3,7 @@
 #include<cassert>
 #include<string>
 using namespace SEP;
-dataType toElementType(const std::string &name) {
+dataType SEP::toElementType(const std::string &name) {
   if (name == "BYTE") return DATA_BYTE;
   if (name == "INT") return DATA_INT;
   if (name == "FLOAT") return DATA_FLOAT;
@@ -12,7 +12,7 @@ dataType toElementType(const std::string &name) {
   return DATA_UNKNOWN;
 }
 
-std::string getTypeString(dataType typ){
+std::string SEP::getTypeString(dataType typ){
 
  switch(typ){
    case DATA_BYTE:
@@ -34,7 +34,7 @@ std::string getTypeString(dataType typ){
      assert(1==2);
 }
 }
-size_t getDataTypeSize(dataType typ){
+size_t SEP::getDataTypeSize(dataType typ){
 
  switch(typ){
    case DATA_BYTE:
