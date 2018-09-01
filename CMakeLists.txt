@@ -70,6 +70,7 @@ add_subdirectory(lib)
 add_subdirectory(python)
 
 add_subdirectory(env-modules)
+message("CHECK 2HYPER "${HYPERCUBE_INTERNAL_INCLUDE_DIR})
 
 
 include(InstallRequiredSystemLibraries)
