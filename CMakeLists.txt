@@ -40,7 +40,7 @@ add_subdirectory(lib)
 option(BUILD_PYTHON "Build python interfaces" ON)
 if(BUILD_PYTHON)
   add_subdirectory(python)
-endif(BULD_PYTHON)
+endif(BUILD_PYTHON)
 
 add_subdirectory(env-modules)
 
