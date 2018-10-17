@@ -7,6 +7,7 @@ enum dataType {
   DATA_FLOAT,
   DATA_COMPLEX,
   DATA_DOUBLE,
+  DATA_SHORT,
   DATA_UNKNOWN
 };
 

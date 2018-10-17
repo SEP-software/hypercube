@@ -9,6 +9,7 @@ dataType SEP::toElementType(const std::string &name) {
   if (name == "FLOAT") return DATA_FLOAT;
   if (name == "COMPLEX") return DATA_COMPLEX;
   if (name == "DOUBLE") return DATA_DOUBLE;
+  if (name == "SHORT") return DATA_SHORT;
   return DATA_UNKNOWN;
 }
 
@@ -26,6 +27,9 @@ std::string SEP::getTypeString(dataType typ){
      break;
    case DATA_INT:
      return  "INT";
+     break;
+   case DATA_SHORT:
+     return  "SHORT";
      break;
    case DATA_DOUBLE:
      return  "DOUBLE";

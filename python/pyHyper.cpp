@@ -59,5 +59,5 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
            (bool (hypercube::*)(const std::shared_ptr<hypercube> &) const) &
                hypercube::sameSize,
            "Check to see if hypercube is the same size");
-}
+}  // namespace SEP
 }  // namespace SEP
