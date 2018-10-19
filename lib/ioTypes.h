@@ -11,8 +11,8 @@ enum dataType {
   DATA_UNKNOWN
 };
 
-size_t getDataTypeSize(dataType typ);
+size_t getDataTypeSize(const dataType typ);
 dataType toElementType(const std::string &name);
-std::string getTypeString(dataType typ);
+std::string getTypeString(const dataType typ);
 
 }  // namespace SEP
