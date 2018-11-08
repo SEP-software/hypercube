@@ -55,6 +55,7 @@ class hypercube:
 			for i in range(kw["hypercube"].getNdim()):
 				a=axis(axis=kw["hypercube"].getAxis(i+1))
 				self.axes.append(a)
+		self.cppMode=buildCpp()
 
 	def getNdim(self):
 		return len(self.axes)
@@ -65,6 +66,8 @@ class hypercube:
 		for ax in self.axes:
 			n123=n123*ax.n	
 	def getCpp(self):
+		return self.cppMode
+	def buildCpp(self):
 		ax1=self.axes[0].getCpp()
 		if len(self.axes)>1:
 			ax2=self.axes[1].getCpp()
