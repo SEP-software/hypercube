@@ -11,7 +11,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE True)
 # configure a header file to pass some of the CMake settings
-find_package(PythonInterp 3 REQUIRED)
 
 set(hypercube_MAJOR_VERSION 0)
 set(hypercube_MINOR_VERSION 2)
