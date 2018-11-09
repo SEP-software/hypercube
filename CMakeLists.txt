@@ -25,6 +25,7 @@ set(hypercube_DIRNAME_include "include")
 
 include(CMakePackageConfigHelpers)
 
+if(NOT SUPPORT_LIBRARIES_BUILD)
 configure_package_config_file(
   "${CMAKE_CURRENT_SOURCE_DIR}/hypercubeConfig.cmake.in"
   "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
@@ -35,7 +36,6 @@ configure_package_config_file(
   hypercube_DIRNAME_lib
   hypercube_DIRNAME_cmake)
 
-if(NOT SUPPORT_LIBRARIES_BUILD)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
         DESTINATION cmake)
 
