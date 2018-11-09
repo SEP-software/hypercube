@@ -35,11 +35,12 @@ configure_package_config_file(
   hypercube_DIRNAME_lib
   hypercube_DIRNAME_cmake)
 
+if(NOT SUPPORT_LIBRARIES_BUILD)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
         DESTINATION cmake)
 
 install(EXPORT hypercubeExports DESTINATION ${hypercube_DIRNAME_cmake})
-
+endif(NOT SUPPORT_LIBRARIES_BUILD)
 add_subdirectory(lib)
 if(BUILD_PYTHON)
   add_subdirectory(python)
