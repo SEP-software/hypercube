@@ -40,13 +40,13 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
         DESTINATION cmake)
 
 install(EXPORT hypercubeExports DESTINATION ${hypercube_DIRNAME_cmake})
+add_subdirectory(env-modules)
 endif(NOT SUPPORT_LIBRARIES_BUILD)
 add_subdirectory(lib)
 if(BUILD_PYTHON)
   add_subdirectory(python)
 endif(BUILD_PYTHON)
 
-add_subdirectory(env-modules)
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
