@@ -40,7 +40,9 @@ configure_package_config_file(
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
         DESTINATION cmake)
 
+if(NOT INSTALL_CMAKE_ENV)
 install(EXPORT hypercubeExports DESTINATION ${hypercube_DIRNAME_cmake})
+endif(NOT INSTALL_CMAKE_ENV)
 add_subdirectory(env-modules)
 endif(NOT SUPPORT_LIBRARIES_BUILD)
 add_subdirectory(lib)
