@@ -39,7 +39,7 @@ class hypercube:
 		if "os" in kw:
 			for i in range(len(kw["os"]) -len(self.axes)):
 				self.axes.append(axis(1))
-			for i in range(len(os)):
+			for i in range(len(kw["os"])):
 				self.axes[i].o=kw["os"][i]
 		if "ds" in kw:
 			for i in range(len(kw["ds"]) -len(self.axes)):
