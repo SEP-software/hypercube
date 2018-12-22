@@ -20,7 +20,7 @@ set(hypercube_VERSION_STRING
 
 include_directories("${PROJECT_BINARY_DIR}")
 
-set(hypercube_DIRNAME_cmake "cmake")
+set(hypercube_DIRNAME_cmake "lib/cmake")
 set(hypercube_DIRNAME_lib "lib")
 set(hypercube_DIRNAME_include "include")
 
@@ -38,7 +38,7 @@ configure_package_config_file(
   hypercube_DIRNAME_cmake)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
-        DESTINATION cmake)
+        DESTINATION lib/cmake)
 
 if(NOT INSTALL_CMAKE_ENV)
 install(EXPORT hypercubeExports DESTINATION ${hypercube_DIRNAME_cmake})
