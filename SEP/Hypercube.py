@@ -3,6 +3,8 @@ import pyHypercube
 
 class axis:
 	def __init__(self,**kw):
+		"""Axis 
+			defaults to n=1, o=0., d=1."""
 		self.n=1
 		self.o=0.
 		self.d=1.
@@ -22,10 +24,15 @@ class axis:
 			self.label=kw["axis"].label
 
 	def getCpp(self):
+		"""Return a c++ version of the python representation"""
 		return pyHypercube.axis(self.n, self.o, self.d, self.label)
 
 class hypercube:
 	def __init__(self,**kw):
+		"""initialize with
+		  - axes=[] A list of Hypercube.axis
+		  - ns=[] An list of integers (optionally lists of os,ds,labels)
+		  - hypercube From another hypercube"""
 		isSet=False
 		self.axes=[]
 		if "axes" in kw:
@@ -58,16 +65,25 @@ class hypercube:
 		self.cppMode=self.buildCpp()
 
 	def getNdim(self):
+		"""Return the number of dimensions"""
 		return len(self.axes)
 	def getAxis(self,i):
+		"""Return an axis"""
 		return self.axes[i-1]
 	def getN123(self):
+		"""Get the number of elements"""
 		n123=1
 		for ax in self.axes:
 			n123=n123*ax.n	
 	def getCpp(self):
+		"""Get the c++ representation"""
 		return self.cppMode
+	def addAxis(self,axis):
+		"""Add an axis to the hypercube"""
+		self.axes.append(axis)
+		self.cppMode.addAxis(axis.getCpp())
 	def buildCpp(self):
+		"""Internal function to build c++ version"""
 		ax1=self.axes[0].getCpp()
 		if len(self.axes)>1:
 			ax2=self.axes[1].getCpp()
