@@ -43,7 +43,7 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
       .def("getAxis",
            (axis(hypercube::*)(const int) const) & hypercube::getAxis,
            "Get a single axis")
-      .def("addAxis", (void hypercube::*(const axis)) & hypercube::addAxis,
+      .def("addAxis", (void (hypercube::*)(const axis)) & hypercube::addAxis,
            "Add an axis to hypercube")
       .def("getAxes",
            (std::vector<axis>(hypercube::*)() const) & hypercube::getAxes,
