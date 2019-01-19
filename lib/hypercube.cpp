@@ -1,5 +1,5 @@
-#include <assert.h>
 #include <hypercube.h>
+#include <SEPException.h>
 
 using namespace SEP;
 hypercube::hypercube(const hypercube &hyper) {
@@ -32,8 +32,7 @@ std::vector<axis> hypercube::getAxes(const int nmin) const {
 }
 void hypercube::setAxis(const int idim, const axis &myaxis) {
   if (idim < 1 || idim > axes.size()) {
-    fprintf(stderr, "IDIM=%d axes.size()=%d \n", idim, (int)axes.size());
-    assert(1 == 2);
+    throw SEPException(std::string("idim=")+std::to_string(idim)+std::string(" axes.size()=")+std::to_string(axes.size()));
   }
   this->axes[idim - 1] = myaxis;
 }
@@ -58,8 +57,7 @@ void hypercube::infoStream(std::stringstream &x) {
 }
 axis hypercube::getAxis(const int idim) const {
   if (idim < 1 || idim > this->axes.size()) {
-    fprintf(stderr, "IDIM=%d axes.size()=%d \n", idim, (int)this->axes.size());
-    assert(1 == 2);
+    throw SEPException(std::string("IDIM=")+std::to_string(idim)+std::string(" axes.size()=")+std::to_string(axes.size()));
   }
   axis myaxis = this->axes[idim - 1];
   return myaxis;

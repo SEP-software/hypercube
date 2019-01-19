@@ -4,7 +4,7 @@ project(hypercube)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 set(SOURCES axis.cpp hypercube.cpp ioTypes.cc header.cpp)
-set(INCLUDES axis.h hypercube.h ioTypes.h header.h)
+set(INCLUDES axis.h hypercube.h ioTypes.h header.h SEPException.h)
 
 add_library(hypercube ${SOURCES} ${INCLUDES})
 
