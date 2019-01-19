@@ -1,6 +1,8 @@
 #include "header.h"
 #include <cstring>
+#include "SEPException.h"
 using namespace SEP;
+
 header::header(const std::vector<key> keys) { _keys = keys; }
 
 void header::addKey(const std::string name, const dataType typ) {
@@ -20,15 +22,20 @@ void header::addKey(const std::string name, const dataType typ) {
 void header::setFloatKey(const std::string name,
                          const std::vector<float> vals) {
   size_t off = getOffset(name);
-  assert(vals.size() == _nh);
+  if (vals.size() != _nh)
+    throw(SEPException(
+        std::string("Size of vals not equal to number of headers")));
   for (size_t ih = 0; ih < _nh; ih++)
     memcpy(_head->data() + ih * _nsz + off, vals.data() + sizeof(float) * ih,
            sizeof(float));
 }
 void header::setIntKey(const std::string name, const std::vector<int> vals) {
   size_t off = getOffset(name);
-  assert(vals.size() == _nh);
-  assert(_keys[getIndex(name)].type() == DATA_INT);
+  if (vals.size() != _nh)
+    throw(SEPException(
+        std::string("Size of vals not equal to number of headers")));
+  if (_keys[getIndex(name)].type() != DATA_INT)
+    throw(SEPException(std::string("Key type is not integer")));
 
   for (size_t ih = 0; ih < _nsz; ih++)
     memcpy(_head->data() + ih * _nsz + off, vals.data() + sizeof(int) * ih,
@@ -37,9 +44,11 @@ void header::setIntKey(const std::string name, const std::vector<int> vals) {
 void header::setDoubleKey(const std::string name,
                           const std::vector<double> vals) {
   size_t off = getOffset(name);
-  assert(vals.size() == _nh);
-  assert(_keys[getIndex(name)].type() == DATA_DOUBLE);
-
+  if (vals.size() != _nh)
+    throw(SEPException(
+        std::string("Size of vals not equal to number of headers")));
+  if (_keys[getIndex(name)].type() != DATA_DOUBLE)
+    throw(SEPException(std::string("Key type is not double")));
   for (size_t ih = 0; ih < _nh; ih++)
     memcpy(_head->data() + ih * _nsz + off, vals.data() + sizeof(double) * ih,
            sizeof(double));
@@ -47,9 +56,11 @@ void header::setDoubleKey(const std::string name,
 void header::setShortKey(const std::string name,
                          const std::vector<short> vals) {
   size_t off = getOffset(name);
-  assert(vals.size() == _nh);
-  assert(_keys[getIndex(name)].type() == DATA_SHORT);
-
+  if (vals.size() != _nh)
+    throw(SEPException(
+        std::string("Size of vals not equal to number of headers")));
+  if (_keys[getIndex(name)].type() != DATA_SHORT)
+    throw(SEPException(std::string("Key type is not short")));
   for (size_t ih = 0; ih < _nh; ih++)
     memcpy(_head->data() + ih * _nsz + off, vals.data() + sizeof(short) * ih,
            sizeof(short));
@@ -57,15 +68,18 @@ void header::setShortKey(const std::string name,
 
 void header::setHeaders(const int nh,
                         std::shared_ptr<std::vector<unsigned char>> head) {
-  assert(head->size() == _nsz * _nh);
+  if (head->size() != _nsz * _nh)
+    throw(SEPException(
+        std::string("Header size not equal to number headers * keys size.")));
+
   _head = head;
   _nh = nh;
 }
 std::vector<float> header::getFloatKey(const std::string name) const {
   size_t off = getOffset(name);
   std::vector<float> vals(_nh);
-  assert(_keys[getIndex(name)].type() == DATA_FLOAT);
-
+  if (_keys[getIndex(name)].type() != DATA_FLOAT)
+    throw(SEPException(std::string("Key type is not float")));
   for (size_t ih = 0; ih < _nh; ih++)
     memcpy(vals.data() + sizeof(float) * ih, _head->data() + ih * _nsz + off,
            sizeof(float));
@@ -74,7 +88,8 @@ std::vector<float> header::getFloatKey(const std::string name) const {
 std::vector<double> header::getDoubleKey(const std::string name) const {
   size_t off = getOffset(name);
   std::vector<double> vals(_nh);
-  assert(_keys[getIndex(name)].type() == DATA_DOUBLE);
+  if (_keys[getIndex(name)].type() != DATA_DOUBLE)
+    throw(SEPException(std::string("Key type is not double")));
 
   for (size_t ih = 0; ih < _nh; ih++)
     memcpy(vals.data() + sizeof(double) * ih, _head->data() + ih * _nsz + off,
@@ -84,7 +99,8 @@ std::vector<double> header::getDoubleKey(const std::string name) const {
 std::vector<int> header::getIntKey(const std::string name) const {
   size_t off = getOffset(name);
   std::vector<int> vals(_nh);
-  assert(_keys[getIndex(name)].type() == DATA_INT);
+  if (_keys[getIndex(name)].type() != DATA_INT)
+    throw(SEPException(std::string("Key type is not int")));
 
   for (size_t ih = 0; ih < _nh; ih++)
     memcpy(vals.data() + sizeof(int) * ih, _head->data() + ih * _nsz + off,
@@ -94,7 +110,8 @@ std::vector<int> header::getIntKey(const std::string name) const {
 std::vector<short> header::getShortKey(const std::string name) const {
   size_t off = getOffset(name);
   std::vector<short> vals(_nh);
-  assert(_keys[getIndex(name)].type() == DATA_SHORT);
+  if (_keys[getIndex(name)].type() != DATA_SHORT)
+    throw(SEPException(std::string("Key type is not short")));
 
   for (size_t ih = 0; ih < _nh; ih++)
     memcpy(vals.data() + sizeof(short) * ih, _head->data() + ih * _nsz + off,
@@ -104,7 +121,8 @@ std::vector<short> header::getShortKey(const std::string name) const {
 float header::getFloatKeyVal(const std::string name, const int index) const {
   size_t off = getOffset(name);
   float val;
-  assert(_keys[getIndex(name)].type() == DATA_FLOAT);
+  if (_keys[getIndex(name)].type() != DATA_FLOAT)
+    throw(SEPException(std::string("Key type is not float")));
 
   memcpy(&val, _head->data() + index * _nsz + off, sizeof(float));
   return val;
@@ -112,7 +130,8 @@ float header::getFloatKeyVal(const std::string name, const int index) const {
 double header::getDoubleKeyVal(const std::string name, const int index) const {
   size_t off = getOffset(name);
   double val;
-  assert(_keys[getIndex(name)].type() == DATA_DOUBLE);
+  if (_keys[getIndex(name)].type() != DATA_DOUBLE)
+    throw(SEPException(std::string("Key type is not double")));
 
   memcpy(&val, _head->data() + index * _nsz + off, sizeof(double));
   return val;
@@ -120,7 +139,8 @@ double header::getDoubleKeyVal(const std::string name, const int index) const {
 int header::getIntKeyVal(const std::string name, const int index) const {
   size_t off = getOffset(name);
   int val;
-  assert(_keys[getIndex(name)].type() == DATA_INT);
+  if (_keys[getIndex(name)].type() != DATA_INT)
+    throw(SEPException(std::string("Key type is not int")));
 
   memcpy(&val, _head->data() + index * _nsz + off, sizeof(int));
   return val;
@@ -128,7 +148,8 @@ int header::getIntKeyVal(const std::string name, const int index) const {
 short header::getShortKeyVal(const std::string name, const int index) const {
   size_t off = getOffset(name);
   short val;
-  assert(_keys[getIndex(name)].type() == DATA_SHORT);
+  if (_keys[getIndex(name)].type() != DATA_SHORT)
+    throw(SEPException(std::string("Key type is not short")));
 
   memcpy(&val, _head->data() + index * _nsz + off, sizeof(short));
   return val;
@@ -136,21 +157,24 @@ short header::getShortKeyVal(const std::string name, const int index) const {
 void header::setFloatKeyVal(const std::string name, const int index,
                             const float val) {
   size_t off = getOffset(name);
-  assert(_keys[getIndex(name)].type() == DATA_FLOAT);
+  if (_keys[getIndex(name)].type() != DATA_FLOAT)
+    throw(SEPException(std::string("Key type is not float")));
 
   memcpy(_head->data() + index * _nsz + off, &val, sizeof(float));
 }
 void header::setShortKeyVal(const std::string name, const int index,
                             const short val) {
   size_t off = getOffset(name);
-  assert(_keys[getIndex(name)].type() == DATA_SHORT);
+  if (_keys[getIndex(name)].type() != DATA_SHORT)
+    throw(SEPException(std::string("Key type is not short")));
 
   memcpy(_head->data() + index * _nsz + off, &val, sizeof(short));
 }
 void header::setDoubleKeyVal(const std::string name, const int index,
                              const double val) {
   size_t off = getOffset(name);
-  assert(_keys[getIndex(name)].type() == DATA_DOUBLE);
+  if (_keys[getIndex(name)].type() != DATA_DOUBLE)
+    throw(SEPException(std::string("Key type is not double")));
 
   memcpy(_head->data() + index * _nsz + off, &val, sizeof(double));
 }
@@ -158,7 +182,8 @@ void header::setDoubleKeyVal(const std::string name, const int index,
 void header::setIntKeyVal(const std::string name, const int index,
                           const int val) {
   size_t off = getOffset(name);
-  assert(_keys[getIndex(name)].type() == DATA_INT);
+  if (_keys[getIndex(name)].type() != DATA_INT)
+    throw(SEPException(std::string("Key type is not int")));
 
   memcpy(_head->data() + index * _nsz + off, &val, sizeof(int));
 }

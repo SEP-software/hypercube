@@ -1,7 +1,7 @@
 #include "ioTypes.h"
-#include <cassert>
 #include <complex>
 #include <string>
+#include "SEPException.h"
 using namespace SEP;
 dataType SEP::toElementType(const std::string &name) {
   if (name == "BYTE") return DATA_BYTE;
@@ -34,7 +34,7 @@ std::string SEP::getTypeString(const dataType typ) {
       return "DOUBLE";
       break;
     default:
-      assert(1 == 2);
+      throw(SEPException(std::string("Unknown data type")));
   }
 }
 size_t SEP::getDataTypeSize(const dataType typ) {
@@ -55,6 +55,6 @@ size_t SEP::getDataTypeSize(const dataType typ) {
       return sizeof(double);
       break;
     default:
-      assert(1 == 2);
+      throw(SEPException(std::string("Unknown data type")));
   }
 }
