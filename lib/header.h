@@ -1,6 +1,5 @@
 #ifndef HEADER_IO_H
 #define HEADER_IO_H 1
-#include <cassert>
 #include <map>
 #include <memory>
 #include <vector>

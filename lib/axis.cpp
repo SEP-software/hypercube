@@ -1,5 +1,5 @@
-#include <cassert>
 #include <axis.h>
+#include "SEPException.h"
 #include <math.h>
 
 using std::string;
@@ -19,7 +19,8 @@ axis::axis(const int n, const float o, const float d) {
 }
 bool axis::same_axis(const axis& ax) const {
   bool match = true;
-  assert(this->d > 1e-7);
+  if (fabs(this->d) < 1e-30) 
+    throw(SEPException(std::string("d to small ")+std::to_string(this->d)));
   if (this->n != ax.n) match = false;
   ;
   if (fabs((this->o - ax.o) / this->d) > .01) match = false;
