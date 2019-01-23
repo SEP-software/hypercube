@@ -78,7 +78,7 @@ class hypercube:
 	def getNs(self):
 		"""Get a list of the sizes of the axes"""
 		ns=[]
-		for a in self axes:
+		for a in self.axes:
 			ns.append(a.n)
 		return ns
 
