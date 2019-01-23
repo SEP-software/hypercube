@@ -75,6 +75,13 @@ class hypercube:
 		n123=1
 		for ax in self.axes:
 			n123=n123*ax.n	
+	def getNs(self):
+		"""Get a list of the sizes of the axes"""
+		ns=[]
+		for a in self axes:
+			ns.append(a.n)
+		return ns
+
 	def getCpp(self):
 		"""Get the c++ representation"""
 		return self.cppMode
