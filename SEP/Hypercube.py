@@ -62,7 +62,7 @@ class hypercube:
 			for i in range(kw["hypercube"].getNdim()):
 				a=axis(axis=kw["hypercube"].getAxis(i+1))
 				self.axes.append(a)
-		self.cppMode=self.buildCpp()
+		self.buildCpp()
 
 	def getNdim(self):
 		"""Return the number of dimensions"""
@@ -75,6 +75,7 @@ class hypercube:
 		n123=1
 		for ax in self.axes:
 			n123=n123*ax.n	
+		return n123
 	def getNs(self):
 		"""Get a list of the sizes of the axes"""
 		ns=[]
@@ -98,13 +99,21 @@ class hypercube:
 				ax3=self.axes[2].getCpp()
 				if len(self.axes)>3:
 					ax4=self.axes[3].getCpp()
-					return pyHypercube.hypercube(ax1,ax2,ax3,ax4)
+					if len(self.axes)>4:
+						ax5=self.axes[4].getCpp()
+						if len(self.axes)>5:
+							ax6=self.axes[5].getCpp()
+							self.cppMode= pyHypercube.hypercube(ax1,ax2,ax3,ax4,ax5,ax6)
+						else:
+							self.cppMode= pyHypercube.hypercube(ax1,ax2,ax3,ax4,ax5)
+					else:
+						self.cppMode= pyHypercube.hypercube(ax1,ax2,ax3,ax4)
 				else:
-					return pyHypercube.hypercube(ax1,ax2,ax3)
+					self.cppMode= pyHypercube.hypercube(ax1,ax2,ax3)
 			else:
-				return pyHypercube.hypercube(ax1,ax2)
+				self.cppMode= pyHypercube.hypercube(ax1,ax2)
 		else:
-			return pyHypercube.hypercube(ax1)
+			self.cppMode= pyHypercube.hypercube(ax1)
 
 	
 
