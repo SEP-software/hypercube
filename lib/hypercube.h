@@ -34,10 +34,10 @@ class hypercube {
     as.push_back(a3);
     setAxes(as);
   }
-  std::shared_ptr <hypercube> clone() const{
-   std::shared_ptr<hypercube> a (new hypercube(*this));
-   return a;
- }
+  std::shared_ptr<hypercube> clone() const {
+    std::shared_ptr<hypercube> a(new hypercube(*this));
+    return a;
+  }
   hypercube(const SEP::axis &a1, const SEP::axis &a2, const SEP::axis &a3,
             const SEP::axis &a4) {
     std::vector<SEP::axis> as;
@@ -48,6 +48,7 @@ class hypercube {
     setAxes(as);
   }
   hypercube(const std::vector<SEP::axis> &axes);
+  bool checkSame(std::shared_ptr<hypercube> hyper2);
   void setAxes(const std::vector<SEP::axis> &axes);
   void setAxis(const int idim, const SEP::axis &ax);
   SEP::axis getAxis(const int idim) const;
@@ -58,9 +59,7 @@ class hypercube {
 
   void addAxis(axis &a) { axes.push_back(a); }
   void deallocate() { axes.clear(); }
-  ~hypercube() {
-    this->deallocate();
-  }
+  ~hypercube() { this->deallocate(); }
 
   void initNd(const std::vector<SEP::axis> &axes);
   std::vector<SEP::axis> returnAxes(const int nmax) const;

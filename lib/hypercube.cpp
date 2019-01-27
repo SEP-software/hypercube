@@ -1,5 +1,5 @@
-#include <hypercube.h>
 #include <SEPException.h>
+#include <hypercube.h>
 
 using namespace SEP;
 hypercube::hypercube(const hypercube &hyper) {
@@ -30,9 +30,25 @@ std::vector<axis> hypercube::getAxes(const int nmin) const {
   for (int i = ax.size(); i < nmin; i++) ax.push_back(axis(1));
   return ax;
 }
+bool hypercube::checkSame(std::shared_ptr<hypercube> hyper2) {
+  if (hyper2->getAxes().length() != axes.length())
+    throw SEPExeption("Axes not the same length");
+  for (int i = 0; i < axes.length(); i++) {
+    axis a = hyper2->getAxis(i + 1);
+    if (a.n != axes[i].n)
+      throw SEPException("Axis " << i + 1 << " " << axes[i].n << " " << a.n);
+    if (fabs((a.d - axes[i].d) / a.d) < 1e-3)
+      throw SEPException("Axis " << i + 1 << " " << axes[i].d << " " << a.d);
+    if (fabs((a.o - axes[i].o) / a.d) < 1e-3)
+      throw SEPException("Axis " << i + 1 << " " << axes[i].o << " " << a.o);
+  }
+}
+
 void hypercube::setAxis(const int idim, const axis &myaxis) {
   if (idim < 1 || idim > axes.size()) {
-    throw SEPException(std::string("idim=")+std::to_string(idim)+std::string(" axes.size()=")+std::to_string(axes.size()));
+    throw SEPException(std::string("idim=") + std::to_string(idim) +
+                       std::string(" axes.size()=") +
+                       std::to_string(axes.size()));
   }
   this->axes[idim - 1] = myaxis;
 }
@@ -57,7 +73,9 @@ void hypercube::infoStream(std::stringstream &x) {
 }
 axis hypercube::getAxis(const int idim) const {
   if (idim < 1 || idim > this->axes.size()) {
-    throw SEPException(std::string("IDIM=")+std::to_string(idim)+std::string(" axes.size()=")+std::to_string(axes.size()));
+    throw SEPException(std::string("IDIM=") + std::to_string(idim) +
+                       std::string(" axes.size()=") +
+                       std::to_string(axes.size()));
   }
   axis myaxis = this->axes[idim - 1];
   return myaxis;
