@@ -1,6 +1,6 @@
 #include <SEPException.h>
 #include <hypercube.h>
-
+#include "math.h"
 using namespace SEP;
 hypercube::hypercube(const hypercube &hyper) {
   std::vector<axis> axes;
@@ -31,16 +31,22 @@ std::vector<axis> hypercube::getAxes(const int nmin) const {
   return ax;
 }
 bool hypercube::checkSame(std::shared_ptr<hypercube> hyper2) {
-  if (hyper2->getAxes().length() != axes.length())
-    throw SEPExeption("Axes not the same length");
-  for (int i = 0; i < axes.length(); i++) {
+  if (hyper2->getAxes().size() != axes.size())
+    throw SEPException("Axes not the same length");
+  for (int i = 0; i < axes.size(); i++) {
     axis a = hyper2->getAxis(i + 1);
     if (a.n != axes[i].n)
-      throw SEPException("Axis " << i + 1 << " " << axes[i].n << " " << a.n);
+      throw SEPException(std::string("Axis ") + std::to_string(i + 1) +
+                         std::string(" ") + std::to_string(axes[i].n) +
+                         std::string(" ") + std::to_string(a.n));
     if (fabs((a.d - axes[i].d) / a.d) < 1e-3)
-      throw SEPException("Axis " << i + 1 << " " << axes[i].d << " " << a.d);
+      throw SEPException(std::string("Axis ") + std::to_string(i + 1) +
+                         std::string(" ") + std::to_string(axes[i].d) +
+                         std::string(" ") + std::to_string(a.d));
     if (fabs((a.o - axes[i].o) / a.d) < 1e-3)
-      throw SEPException("Axis " << i + 1 << " " << axes[i].o << " " << a.o);
+      throw SEPException(std::string("Axis ") + std::to_string(i + 1) +
+                         std::string(" ") + std::to_string(axes[i].o) +
+                         std::string(" ") + std::to_string(a.o));
   }
 }
 
