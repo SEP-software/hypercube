@@ -30,11 +30,11 @@ std::vector<axis> hypercube::getAxes(const int nmin) const {
   for (int i = ax.size(); i < nmin; i++) ax.push_back(axis(1));
   return ax;
 }
-bool hypercube::checkSame(std::shared_ptr<hypercube> hyper2) {
+bool hypercube::checkSame(const std::shared_ptr<hypercube> hyper2) const {
   if (hyper2->getAxes().size() != axes.size())
     throw SEPException("Axes not the same length");
   for (int i = 0; i < axes.size(); i++) {
-    axis a = hyper2->getAxis(i + 1);
+    const axis a = hyper2->getAxis(i + 1);
     if (a.n != axes[i].n)
       throw SEPException(std::string("Axis ") + std::to_string(i + 1) +
                          std::string(" ") + std::to_string(axes[i].n) +

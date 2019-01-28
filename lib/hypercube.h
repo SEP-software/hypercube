@@ -48,7 +48,7 @@ class hypercube {
     setAxes(as);
   }
   hypercube(const std::vector<SEP::axis> &axes);
-  bool checkSame(std::shared_ptr<hypercube> hyper2);
+  bool checkSame(const std::shared_ptr<hypercube> hyper2) const;
   void setAxes(const std::vector<SEP::axis> &axes);
   void setAxis(const int idim, const SEP::axis &ax);
   SEP::axis getAxis(const int idim) const;
