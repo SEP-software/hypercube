@@ -1,4 +1,5 @@
-#pragma once
+#ifndef  sepException_H
+#define  sepException_H
 #include<string>
 class SEPException : public std::exception {
 public:
@@ -8,3 +9,4 @@ public:
 private:
     std::string message = "";
 };
+#endif

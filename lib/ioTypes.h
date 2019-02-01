@@ -1,4 +1,5 @@
-#pragma once
+#ifndef iotypes_h
+#define iotypes_h 1
 #include <string>
 namespace SEP {
 enum dataType {
@@ -16,3 +17,4 @@ dataType toElementType(const std::string &name);
 std::string getTypeString(const dataType typ);
 
 }  // namespace SEP
+#endif
