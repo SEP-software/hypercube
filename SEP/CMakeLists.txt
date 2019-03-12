@@ -15,6 +15,8 @@ if (pybind11_FOUND)
   target_link_libraries(pySEPException PRIVATE  hypercube)
   pybind11_add_module(pyHypercube MODULE pyHyper.cpp)
   target_link_libraries(pyHypercube PRIVATE  hypercube)
+  pybind11_add_module(pyDebug MODULE pyDebug.cpp)
+  target_link_libraries(pyDebug PRIVATE  hypercube)
 
   install( TARGETS pyHypercube pySEPException DESTINATION lib/python)
   install(FILES Hypercube.py DESTINATION lib/python)
