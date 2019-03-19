@@ -45,7 +45,7 @@ class header {
                        const double val);
   void setIntKeyVal(const std::string name, const int index, const int val);
 
-  std::shared_ptr<headers> clone();
+  std::shared_ptr<header> clone();
 
  private:
   size_t getIndex(const std::string name) const { return _key_index.at(name); }

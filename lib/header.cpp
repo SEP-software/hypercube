@@ -17,7 +17,7 @@ header::header(const std::vector<key> keys, const int nh) {
 }
 
 std::shared_ptr<header> header::clone() {
-  std::shared_ptr<header> x(header(_keys, _head.size()));
+  std::shared_ptr<header> x(new header(_keys, _head.size()));
   x->setHeaders(_head);
   return x;
 }
