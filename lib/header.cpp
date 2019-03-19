@@ -16,6 +16,11 @@ header::header(const std::vector<key> keys, const int nh) {
   _head.resize(nh, head);
 }
 
+std::shared_ptr<header> header::clone() {
+  std::shared_ptr<header> x(header(_keys, _head.size()));
+  x->setHeaders(_head);
+  return x;
+}
 void header::addKey(const std::string name, const dataType typ) {
   _key_index[name] = _keys.size();
   _keys.push_back(key(name, typ));
@@ -223,29 +228,4 @@ void header::setIntKeyVal(const std::string name, const int index,
         std::string("Header requested out of range must be between 0 and " +
                     std::to_string(_head.size())));
   memcpy(_head[index].data() + off, &val, sizeof(int));
-}
-void header::setDRNs(const std::vector<size_t> drn) {
-  if (_head.size() != drn.size())
-    throw(SEPException(
-        std::string("Size of drn not equal to number of headers")));
-  _drns = drn;
-}
-std::vector<size_t> header::getDRNs() const {
-  std::vector<size_t> d;
-  d = _drns;
-  return d;
-}
-size_t header::getDrn(const size_t index) const {
-  if (index < 0 || index >= _drns.size())
-    throw SEPException(
-        std::string("DRN requested out of range mumst be between 0 and " +
-                    std::to_string(_drns.size() - 1)));
-  return _drns[index];
-}
-void header::setDRN(const size_t index, const size_t drn) {
-  if (index < 0 || index >= _drns.size())
-    throw SEPException(
-        std::string("DRN requested out of range mumst be between 0 and " +
-                    std::to_string(_drns.size() - 1)));
-  _drns[index] = drn;
 }

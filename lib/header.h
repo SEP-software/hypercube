@@ -44,10 +44,8 @@ class header {
   void setDoubleKeyVal(const std::string name, const int index,
                        const double val);
   void setIntKeyVal(const std::string name, const int index, const int val);
-  void setDRNs(const std::vector<size_t> drn);
-  std::vector<size_t> getDRNs() const;
-  size_t getDrn(const size_t index) const;
-  void setDRN(const size_t index, const size_t drn);
+
+  std::shared_ptr<headers> clone();
 
  private:
   size_t getIndex(const std::string name) const { return _key_index.at(name); }
@@ -62,7 +60,7 @@ class header {
   std::map<std::string, size_t> _key_index;
   std::map<std::string, size_t> _key_offset;
   std::vector<std::vector<unsigned char>> _head;
-  std::vector<size_t> _drns;
+
   int _nsz;
 };
 
