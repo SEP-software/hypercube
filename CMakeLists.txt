@@ -42,6 +42,11 @@ add_subdirectory(lib)
 if(BUILD_PYTHON)
   add_subdirectory(SEP)
 endif(BUILD_PYTHON)
+include(CMakePackageConfigHelpers)
+configure_package_config_file(hypercubeConfig.cmake.in
+                              "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
+                              INSTALL_DESTINATION
+                              cmake/SEP/IO)
 
 install(EXPORT HypercubeTargets
         FILE hypercubeTargets.cmake

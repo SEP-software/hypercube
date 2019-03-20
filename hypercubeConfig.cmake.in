@@ -1,14 +1,9 @@
-# - Config file for the FooBar package
-# It defines the following variables
-
 @PACKAGE_INIT@
 
-  INCLUDE(${CMAKE_CURRENT_LIST_DIR}/hypercubeExports.cmake)
 
 
+check_required_components(hypercube)
 
-set_and_check(hypercube_DIRNAME_include "@PACKAGE_hypercube_DIRNAME_include@")
-set_and_check(hypercube_DIRNAME_lib "@PACKAGE_hypercube_DIRNAME_lib@")
-
-
-
+if(NOT TARGET SEP::IO::hypercube)
+  include("${CMAKE_CURRENT_LIST_DIR}/hypercubeTargets.cmake")
+endif()
