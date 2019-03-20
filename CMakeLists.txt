@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
-if(NOT SUBPACKAGE) 
+if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)
   option(INSTALL_CMAKE_ENV "Install cmake build environment" ON)
 endif(NOT SUBPACKAGE)
@@ -26,29 +26,27 @@ set(hypercube_DIRNAME_include "include")
 
 include(CMakePackageConfigHelpers)
 
-if(NOT SUPPORT_LIBRARIES_BUILD)
-configure_package_config_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/hypercubeConfig.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
-  INSTALL_DESTINATION
-  ${hypercube_DIRNAME_cmake}
-  PATH_VARS
-  hypercube_DIRNAME_include
-  hypercube_DIRNAME_lib
-  hypercube_DIRNAME_cmake)
+# if(NOT SUPPORT_LIBRARIES_BUILD) configure_package_config_file(
+# "${CMAKE_CURRENT_SOURCE_DIR}/hypercubeConfig.cmake.in"
+# "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake" INSTALL_DESTINATION
+# ${hypercube_DIRNAME_cmake} PATH_VARS hypercube_DIRNAME_include
+# hypercube_DIRNAME_lib hypercube_DIRNAME_cmake)
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake
-        DESTINATION lib/cmake)
-
-if(NOT INSTALL_CMAKE_ENV)
-install(EXPORT hypercubeExports DESTINATION ${hypercube_DIRNAME_cmake})
-endif(NOT INSTALL_CMAKE_ENV)
-#add_subdirectory(env-modules)
-endif(NOT SUPPORT_LIBRARIES_BUILD)
+# install(FILES ${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake DESTINATION
+# lib/cmake)
+#
+# if(NOT INSTALL_CMAKE_ENV) install(EXPORT hypercubeExports DESTINATION
+# ${hypercube_DIRNAME_cmake}) endif(NOT INSTALL_CMAKE_ENV) add_subdirectory(env-
+# modules) endif(NOT SUPPORT_LIBRARIES_BUILD)
 add_subdirectory(lib)
 if(BUILD_PYTHON)
   add_subdirectory(SEP)
 endif(BUILD_PYTHON)
+
+install(EXPORT HypercubeTargets
+        FILE SEPlibTargets.cmake
+        NAMESPACE SEP::IO
+        DESTINATION cmake/sep/io)
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
