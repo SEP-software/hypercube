@@ -43,7 +43,7 @@ class debugging {
   void addDebug(std::string name, std::shared_ptr<debug> d) {
     _debugs[name] = d;
   }
-  std::shared_ptr<debug> getDebug(std::string &name);
+  std::shared_ptr<debug> getDebug(const std::string &name);
 
  private:
   debugging() { ; }

@@ -24,7 +24,13 @@ fileDebug::fileDebug(std::string &name, int nflush) {
   setFlush(nflush);
 }
 
-std::vector<std::string> debugging::getDebug(std::string buffer) {
+std::shared_ptr<debug> debugging::getDebug(const std::string &name) {
+  if (_debugs.count(name) == 0)
+    throw SEPException(std::string("Request for unknown debug"));
+  return _debugs[name];
+}
+
+std::vector<std::string> getDebug(const std::string &buffer) {
   debugging *mydebug = &debugging::instance();
   return mydebug->getDebug(buffer)->returnLines();
 }
