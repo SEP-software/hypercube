@@ -44,7 +44,7 @@ if(BUILD_PYTHON)
 endif(BUILD_PYTHON)
 
 install(EXPORT HypercubeTargets
-        FILE SEPlibTargets.cmake
+        FILE hypercubeTargets.cmake
         NAMESPACE SEP::IO
         DESTINATION cmake/sep/io)
 
