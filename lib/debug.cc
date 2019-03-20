@@ -24,7 +24,7 @@ fileDebug::fileDebug(std::string &name, int nflush) {
   setFlush(nflush);
 }
 
-std::vector<std::string> getDebug(std::string buffer) {
+std::vector<std::string> debugging::getDebug(std::string buffer) {
   debugging *mydebug = &debugging::instance();
   return mydebug->getDebug(buffer)->returnLines();
 }
