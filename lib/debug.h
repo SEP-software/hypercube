@@ -13,7 +13,7 @@ class debug {
   void addLine(std::stringstream &x);
   virtual void flush();
   std::vector<std::string> returnLines() { return _lines; }
-  int setFlush(int nf) { _nflush = nf; }
+  void setFlush(int nf) { _nflush = nf; }
   virtual void close() { ; }
   std::vector<std::string> _lines;
 
