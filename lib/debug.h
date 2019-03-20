@@ -11,7 +11,7 @@ namespace SEP {
 class debug {
  public:
   void addLine(std::stringstream &x);
-  virtual void flush();
+  virtual void flush()=0;
   std::vector<std::string> returnLines() { return _lines; }
   void setFlush(int nf) { _nflush = nf; }
   virtual void close() { ; }
@@ -23,13 +23,13 @@ class debug {
 class errDebug : public debug {
  public:
   errDebug(int nflush = 1000000) { setFlush(nflush); }
-  virtual void flush();
+  virtual void flush() override;
 };
 class fileDebug : public debug {
  public:
   fileDebug(std::string &name, int nflush = 1000000);
-  virtual void close();
-  virtual void flush();
+  virtual void close() override;
+  virtual void flush() override;
 
  private:
   std::ofstream _file;
