@@ -5,6 +5,13 @@ project(hypercube)
 
 set(SOURCES axis.cpp hypercube.cpp ioTypes.cc header.cpp debug.cc)
 set(INCLUDES axis.h hypercube.h ioTypes.h header.h SEPException.h debug.h)
+set(SOURCES  ioTypes.cc  debug.cc
+axis.cpp  
+hypercube.cpp 
+ header.cpp 
+)
+
+
 
 add_library(hypercube ${SOURCES} ${INCLUDES})
 

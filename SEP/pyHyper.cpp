@@ -7,11 +7,6 @@ namespace SEP {
 PYBIND11_MODULE(pyHypercube, clsHyper) {
   py::class_<axis>(clsHyper, "axis")  //
       .def(py::init<>(), "Initlialize an empty axis")
-      .def(py::init<const int>(), "initialize an axis by only its size")
-      .def(py::init<const int, const float, const float>(),
-           "Initialize by number, origin, sampling")
-      .def(py::init<const int, const float, const float, const std::string &>(),
-           "Initialize by number, origin,sampling, label")
       .def(py::init<const int, const float, const float, const std::string &,
                     const std::string &>(),
            "Initialize by number, origin, sampling, label, and unit")
