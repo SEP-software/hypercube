@@ -182,8 +182,8 @@ class hypercube {
   void initNd(const std::vector<SEP::axis> &axes);
 
  protected:
-  long long n123;               /// Number of samples
-  std::vector<SEP::axis> axes;  /// List of axes
+  long long n123;               ///< Number of samples
+  std::vector<SEP::axis> axes;  ///< List of axes
 };
 }  // namespace SEP
 #endif

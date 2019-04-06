@@ -1,8 +1,13 @@
+
+
 #include "ioTypes.h"
 #include <complex>
 #include <string>
 #include "SEPException.h"
 using namespace SEP;
+//! Convert string to element type
+/*!
+\param name String name of element type */
 dataType SEP::toElementType(const std::string &name) {
   if (name == "BYTE") return DATA_BYTE;
   if (name == "INT") return DATA_INT;
@@ -12,7 +17,9 @@ dataType SEP::toElementType(const std::string &name) {
   if (name == "SHORT") return DATA_SHORT;
   return DATA_UNKNOWN;
 }
-
+//! Convert element type to string
+/*!
+\param typ data element type */
 std::string SEP::getTypeString(const dataType typ) {
   switch (typ) {
     case DATA_BYTE:
@@ -37,6 +44,9 @@ std::string SEP::getTypeString(const dataType typ) {
       throw(SEPException(std::string("Unknown data type")));
   }
 }
+//! Get the size of element type
+/*!
+\param typ Data element type */
 size_t SEP::getDataTypeSize(const dataType typ) {
   switch (typ) {
     case DATA_BYTE:

@@ -154,7 +154,8 @@ class header {
   */
   void setIntKeyVal(const std::string name, const int index, const int val);
 
-  std::shared_ptr<header> clone();  /// Clone the headers
+  //! Clone headers
+  std::shared_ptr<header> clone();
 
  private:
   //!  Get index of a given key

@@ -27,7 +27,7 @@ class debug {
   void setFlush(int nflush) { _nflush = nflush; }
   //! How to close the buffer
   virtual void close() { ; }
-  std::vector<std::string> _lines;  /// Buffer of currerntly stored lines
+  std::vector<std::string> _lines;  ///< Buffer of currerntly stored lines
 
  private:
   int _nflush;  /// How often to flush
