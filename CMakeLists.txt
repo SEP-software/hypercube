@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)
   option(INSTALL_CMAKE_ENV "Install cmake build environment" ON)
+  option(BUILD_DOC "Build documentation" ON)
+else(NOT SUBPACKAGE)
+option(BUILD_DOC "Build documentation" OFF)
 endif(NOT SUBPACKAGE)
 set(SUBPACKAGE true)
 
@@ -28,7 +31,7 @@ include(CMakePackageConfigHelpers)
 
 
 # first we can indicate the documentation build as an option and set it to ON by default
-option(BUILD_DOC "Build documentation" ON)
+
 
 # check if Doxygen is installed
 find_package(Doxygen)
