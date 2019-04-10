@@ -33,6 +33,7 @@ include(CMakePackageConfigHelpers)
 # first we can indicate the documentation build as an option and set it to ON by default
 
 
+if(BUILD_DOC) 
 # check if Doxygen is installed
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
@@ -53,6 +54,7 @@ if (DOXYGEN_FOUND)
 else (DOXYGEN_FOUND)
   message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
+endif(BUILD_DOC)
 
 
 
