@@ -30,7 +30,7 @@ class axis:
 
     def getCpp(self):
         """Return a c++ version of the python representation"""
-        return pyHypercube.axis(self.n, self.o, self.d, self.label)
+        return pyHypercube.axis(self.n, self.o, self.d, self.label,self.unit)
 
 
 class hypercube:
