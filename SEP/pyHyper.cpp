@@ -32,6 +32,10 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
            "Initalize from three axes")
       .def(py::init<const axis &, const axis &, const axis &, const axis &>(),
            "Initalize from four axes")
+      .def(py::init<const axis &, const axis &, const axis &, const axis &, const axis &>(),
+           "Initalize from five axes")
+      .def(py::init<const axis &, const axis &, const axis &, const axis &, const axis &, const axis &>(),
+           "Initalize from six axes")
 
       .def("setAxis",
            (void (hypercube::*)(const int, const axis &)) & hypercube::setAxis,
