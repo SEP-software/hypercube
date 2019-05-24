@@ -19,7 +19,7 @@ class axis:
             self.d = kw["d"]
         if "label" in kw:
             self.label = kw["label"]
-        if "label" in kw:
+        if "unit" in kw:
             self.unit = kw["unit"]
         if "axis" in kw:
             self.n = kw["axis"].n
