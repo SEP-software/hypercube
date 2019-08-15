@@ -57,11 +57,17 @@ endif (DOXYGEN_FOUND)
 endif(BUILD_DOC)
 
 
+if(NOT TARGET pybind11)
+  execute_process(COMMAND git submodule update --init --recursive --
+                          external/pybind11
+                  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  add_subdirectory(external/pybind11)
+endif(NOT TARGET pybind11)
 
 
 add_subdirectory(lib)
 if(BUILD_PYTHON)
-  add_subdirectory(SEP)
+  add_subdirectory(python)
 endif(BUILD_PYTHON)
 include(CMakePackageConfigHelpers)
 configure_package_config_file(hypercubeConfig.cmake.in
