@@ -57,6 +57,12 @@ endif (DOXYGEN_FOUND)
 endif(BUILD_DOC)
 
 
+if(NOT TARGET pybind11)
+  execute_process(COMMAND git submodule update --init --recursive --
+                          external/pybind11
+                  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  add_subdirectory(external/pybind11)
+endif(NOT TARGET pybind11)
 
 
 add_subdirectory(lib)
