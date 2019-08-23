@@ -4,9 +4,7 @@ cmake_minimum_required(VERSION 3.0)
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
 find_package(PythonInterp 3 REQUIRED)
-find_package(pybind11 REQUIRED)
 
-if(pybind11_FOUND)
 
   pybind11_add_module(pySEPException MODULE pySEPException.cpp)
   target_link_libraries(pySEPException PRIVATE hypercube)
@@ -38,6 +36,4 @@ if(pybind11_FOUND)
           DESTINATION lib/python
           EXPORT HypercubeTargets)
   install(FILES Hypercube.py DESTINATION lib/python)
-else(pybind11_FOUND)
 
-endif(pybind11_FOUND)
