@@ -25,3 +25,12 @@ if(NOT SUPPORT_LIBRARIES_BUILD)
   install(FILES ${INCLUDES} DESTINATION include)
     install(TARGETS hypercube DESTINATION lib EXPORT HypercubeTargets)
 endif(NOT SUPPORT_LIBRARIES_BUILD)
+
+
+add_executable(testAxis testAxis.cc)
+target_link_libraries(testAxis hypercube gtest gtest_main gtest)
+add_test(NAME axis COMMAND testAxis)
+
+add_executable(testHypercube testHypercube.cc)
+target_link_libraries(testHypercube hypercube gtest gtest_main gtest)
+add_test(NAME hypercube COMMAND testHypercube)

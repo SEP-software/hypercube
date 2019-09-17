@@ -4,8 +4,10 @@ if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)
   option(INSTALL_CMAKE_ENV "Install cmake build environment" ON)
   option(BUILD_DOC "Build documentation" ON)
+  option(BUILD_TESTS "Build with test support" ON)
+
 else(NOT SUBPACKAGE)
-option(BUILD_DOC "Build documentation" OFF)
+  option(BUILD_DOC "Build documentation" OFF)
 endif(NOT SUBPACKAGE)
 set(SUBPACKAGE true)
 
@@ -29,14 +31,16 @@ set(hypercube_DIRNAME_include "include")
 
 include(CMakePackageConfigHelpers)
 
+if(BUILD_TESTS)
+  enable_testing()
+endif(BUILD_TESTS)
+# first we can indicate the documentation build as an option and set it to ON by
+# default
 
-# first we can indicate the documentation build as an option and set it to ON by default
-
-
-if(BUILD_DOC) 
-# check if Doxygen is installed
-find_package(Doxygen)
-if (DOXYGEN_FOUND)
+if(BUILD_DOC)
+  # check if Doxygen is installed
+  find_package(Doxygen)
+  if(DOXYGEN_FOUND)
     # set input and output files
     set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in)
     set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/docs/Doxyfile)
@@ -45,17 +49,18 @@ if (DOXYGEN_FOUND)
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
     message("Doxygen build started")
 
-    # note the option ALL which allows to build the docs together with the application
-    add_custom_target( doc_doxygen ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Generating API documentation with Doxygen"
-        VERBATIM )
-else (DOXYGEN_FOUND)
-  message("Doxygen need to be installed to generate the doxygen documentation")
-endif (DOXYGEN_FOUND)
+    # note the option ALL which allows to build the docs together with the
+    # application
+    add_custom_target(doc_doxygen ALL
+                      COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+                      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                      COMMENT "Generating API documentation with Doxygen"
+                      VERBATIM)
+  else(DOXYGEN_FOUND)
+    message(
+      "Doxygen need to be installed to generate the doxygen documentation")
+  endif(DOXYGEN_FOUND)
 endif(BUILD_DOC)
-
 
 if(NOT TARGET pybind11)
   execute_process(COMMAND git submodule update --init --recursive --
@@ -64,16 +69,16 @@ if(NOT TARGET pybind11)
   add_subdirectory(external/pybind11)
 endif(NOT TARGET pybind11)
 
-
 add_subdirectory(lib)
 if(BUILD_PYTHON)
   add_subdirectory(python)
 endif(BUILD_PYTHON)
 include(CMakePackageConfigHelpers)
-configure_package_config_file(hypercubeConfig.cmake.in
-                              "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
-                              INSTALL_DESTINATION
-                              cmake/SEP/IO)
+configure_package_config_file(
+  hypercubeConfig.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/hypercubeConfig.cmake"
+  INSTALL_DESTINATION
+  cmake/SEP/IO)
 
 install(EXPORT HypercubeTargets
         FILE hypercubeTargets.cmake

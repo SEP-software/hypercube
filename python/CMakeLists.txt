@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
-find_package(PythonInterp 3 REQUIRED)
+find_package (Python3 COMPONENTS Interpreter Development REQUIRED)
+
 
 
   pybind11_add_module(pySEPException MODULE pySEPException.cpp)
@@ -36,4 +37,6 @@ find_package(PythonInterp 3 REQUIRED)
           DESTINATION lib/python
           EXPORT HypercubeTargets)
   install(FILES Hypercube.py DESTINATION lib/python)
-
+if(Python3_Interpreter_FOUND)
+  add_test(NAME hypercube COMMAND Python3::Interpreter -m pytest -r a -v  ${CMAKE_CURRENT_SOURCE_DIR})
+endif()

@@ -30,7 +30,7 @@ class axis:
 
     def getCpp(self):
         """Return a c++ version of the python representation"""
-        return pyHypercube.axis(self.n, self.o, self.d, self.label,self.unit)
+        return pyHypercube.axis(self.n, self.o, self.d, self.label, self.unit)
 
 
 class hypercube:
@@ -63,8 +63,13 @@ class hypercube:
         if "labels" in kw:
             for i in range(len(kw["labels"]) - len(self.axes)):
                 self.axes.append(axis(1))
-            for i in range(len(os)):
+            for i in range(len(kw["labels"])):
                 self.axes[i].label = kw["labels"][i]
+        if "units" in kw:
+            for i in range(len(kw["units"]) - len(self.axes)):
+                self.axes.append(axis(1))
+            for i in range(len(kw["units"])):
+                self.axes[i].unit = kw["units"][i]
         if "hypercube" in kw:
             for i in range(kw["hypercube"].getNdim()):
                 a = axis(axis=kw["hypercube"].getAxis(i + 1))

@@ -19,6 +19,7 @@ hypercube::hypercube(const int ndim) {
 }
 hypercube::hypercube(const std::vector<axis> &axes) { initNd(axes); }
 void hypercube::initNd(const std::vector<axis> &ax) {
+  this->axes.resize(0);
   this->n123 = 1;
   for (int i = 0; i < ax.size(); i++) {
     axes.push_back(ax[i]);
@@ -51,6 +52,7 @@ bool hypercube::checkSame(const std::shared_ptr<hypercube> hyper2) const {
                          std::to_string(axes[i].o) + std::string(" ") +
                          std::to_string(a.o));
   }
+  return true;
 }
 
 void hypercube::setAxis(const int idim, const axis &myaxis) {
