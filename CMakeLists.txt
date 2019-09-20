@@ -4,7 +4,7 @@ if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)
   option(INSTALL_CMAKE_ENV "Install cmake build environment" ON)
   option(BUILD_DOC "Build documentation" ON)
-  option(BUILD_TESTS "Build with test support" ON)
+  option(BUILD_TEST "Build with test support" OFF)
 
 else(NOT SUBPACKAGE)
   option(BUILD_DOC "Build documentation" OFF)
