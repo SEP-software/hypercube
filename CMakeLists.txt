@@ -7,7 +7,6 @@ if(NOT SUBPACKAGE)
   option(BUILD_TEST "Build with test support" OFF)
 
 else(NOT SUBPACKAGE)
-  option(BUILD_DOC "Build documentation" OFF)
 endif(NOT SUBPACKAGE)
 set(SUBPACKAGE true)
 
