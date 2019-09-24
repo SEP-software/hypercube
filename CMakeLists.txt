@@ -3,9 +3,8 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)
   option(INSTALL_CMAKE_ENV "Install cmake build environment" ON)
-  option(BUILD_DOC "Build documentation" ON)
+  option(BUILD_DOC "Build documentation" OFF)
   option(BUILD_TEST "Build with test support" OFF)
-
 else(NOT SUBPACKAGE)
 endif(NOT SUBPACKAGE)
 set(SUBPACKAGE true)
@@ -29,10 +28,18 @@ set(hypercube_DIRNAME_lib "lib")
 set(hypercube_DIRNAME_include "include")
 
 include(CMakePackageConfigHelpers)
-
-if(BUILD_TESTS)
+if(BUILD_TEST)
+message("IN BUILD TEST")
+  if(NOT BUILD_GCP)
+    include_directories(
+       ${CMAKE_CURRENT_SOURCE_DIR}/external/googletest/googletest/include)
+  execute_process(COMMAND git submodule update --init --recursive --external/googletest WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}) 
   enable_testing()
-endif(BUILD_TESTS)
+  add_subdirectory(external/googletest)
+endif(NOT BUILD_GCP)
+else(BUILD_TEST)
+message("XXX")
+endif(BUILD_TEST)
 # first we can indicate the documentation build as an option and set it to ON by
 # default
 
