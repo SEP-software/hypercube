@@ -29,7 +29,6 @@ set(hypercube_DIRNAME_include "include")
 
 include(CMakePackageConfigHelpers)
 if(BUILD_TEST)
-message("IN BUILD TEST")
   if(NOT BUILD_GCP)
     include_directories(
        ${CMAKE_CURRENT_SOURCE_DIR}/external/googletest/googletest/include)
@@ -38,7 +37,6 @@ message("IN BUILD TEST")
   add_subdirectory(external/googletest)
 endif(NOT BUILD_GCP)
 else(BUILD_TEST)
-message("XXX")
 endif(BUILD_TEST)
 # first we can indicate the documentation build as an option and set it to ON by
 # default
