@@ -6,6 +6,7 @@ if(NOT SUBPACKAGE)
   option(BUILD_DOC "Build documentation" OFF)
   option(BUILD_TEST "Build with test support" OFF)
 else(NOT SUBPACKAGE)
+
 endif(NOT SUBPACKAGE)
 set(SUBPACKAGE true)
 
@@ -31,12 +32,17 @@ include(CMakePackageConfigHelpers)
 if(BUILD_TEST)
   if(NOT BUILD_GCP)
     include_directories(
-       ${CMAKE_CURRENT_SOURCE_DIR}/external/googletest/googletest/include)
-  execute_process(COMMAND git submodule update --init --recursive --external/googletest WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}) 
-  enable_testing()
-  add_subdirectory(external/googletest)
-endif(NOT BUILD_GCP)
+      ${CMAKE_CURRENT_SOURCE_DIR}/external/googletest/googletest/include)
+    if(NOT SUBPACKAGE)
+      execute_process(COMMAND git submodule update --init --recursive
+                              --external/googletest
+                      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    endif(NOT SUBPACKAGE)
+    enable_testing()
+    add_subdirectory(external/googletest)
+  endif(NOT BUILD_GCP)
 else(BUILD_TEST)
+
 endif(BUILD_TEST)
 # first we can indicate the documentation build as an option and set it to ON by
 # default
