@@ -8,7 +8,6 @@ if(NOT SUBPACKAGE)
 else(NOT SUBPACKAGE)
 
 endif(NOT SUBPACKAGE)
-set(SUBPACKAGE true)
 
 project(hypercube LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 11)
@@ -29,21 +28,7 @@ set(hypercube_DIRNAME_lib "lib")
 set(hypercube_DIRNAME_include "include")
 
 include(CMakePackageConfigHelpers)
-if(BUILD_TEST)
-  if(NOT BUILD_GCP)
-    include_directories(
-      ${CMAKE_CURRENT_SOURCE_DIR}/external/googletest/googletest/include)
-    if(NOT SUBPACKAGE)
-      execute_process(COMMAND git submodule update --init --recursive
-                              --external/googletest
-                      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-    endif(NOT SUBPACKAGE)
-    enable_testing()
-    add_subdirectory(external/googletest)
-  endif(NOT BUILD_GCP)
-else(BUILD_TEST)
 
-endif(BUILD_TEST)
 # first we can indicate the documentation build as an option and set it to ON by
 # default
 
@@ -57,7 +42,6 @@ if(BUILD_DOC)
 
     # request to configure the file
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-    message("Doxygen build started")
 
     # note the option ALL which allows to build the docs together with the
     # application
@@ -72,17 +56,30 @@ if(BUILD_DOC)
   endif(DOXYGEN_FOUND)
 endif(BUILD_DOC)
 
-if(NOT TARGET pybind11)
+if(NOT SUBPACKAGE)
   execute_process(COMMAND git submodule update --init --recursive --
                           external/pybind11
                   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-  add_subdirectory(external/pybind11)
-endif(NOT TARGET pybind11)
 
+  if(NOT BUILD_GCP)
+    execute_process(COMMAND git submodule update --init --recursive --
+                            external/googletest
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  endif(NOT BUILD_GCP)
+endif(NOT SUBPACKAGE)
+
+set(SUBPACKAGE true)
+
+if(BUILD_TEST)
+  enable_testing()
+endif(BUILD_TEST)
+
+if(NOT BUILD_GCP AND BUILD_TEST)
+  add_subdirectory(external/googletest)
+endif()
+add_subdirectory(external/pybind11)
 add_subdirectory(lib)
-if(BUILD_PYTHON)
-  add_subdirectory(python)
-endif(BUILD_PYTHON)
+add_subdirectory(python)
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
   hypercubeConfig.cmake.in
