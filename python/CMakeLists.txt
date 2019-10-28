@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
-find_package (Python3 COMPONENTS Interpreter Development REQUIRED)
+find_package (Python3 COMPONENTS Interpreter  REQUIRED)
 
 
 
