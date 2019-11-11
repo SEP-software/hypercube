@@ -50,6 +50,7 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
            "Grab all axes")
       .def("getN123", (long long (hypercube::*)() const) & hypercube::getN123,
            "Grab the number of samples")
+      .def("clone",(std::shared_ptr<hypercube>(hypercube::*)() const) & hypercube::clone," Clone hypercube")
       .def("getNdim", (int (hypercube::*)() const) & hypercube::getNdim,
            "Get the number of axes")
       .def("getNdimG1", (int (hypercube::*)() const) & hypercube::getNdimG1,

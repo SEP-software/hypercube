@@ -76,6 +76,11 @@ class hypercube:
                 self.axes.append(a)
         self.buildCpp()
 
+    def clone(self):
+        """Clone hypercube"""
+        x=Hypercube.hypercube(hypercube=self.getCpp())
+        return x
+
     def getNdim(self):
         """Return the number of dimensions"""
         return len(self.axes)
@@ -101,6 +106,7 @@ class hypercube:
     def getCpp(self):
         """Get the c++ representation"""
         return self.cppMode
+
 
     def addAxis(self, axis):
         """Add an axis to the hypercube"""
