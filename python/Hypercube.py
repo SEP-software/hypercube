@@ -107,6 +107,11 @@ class hypercube:
         """Get the c++ representation"""
         return self.cppMode
 
+    
+    def checkSame(self,hyper):
+        """CHeck to see if hypercube is the same space"""
+        self.cppMode.checkSame(self.cppMode)
+
 
     def addAxis(self, axis):
         """Add an axis to the hypercube"""
