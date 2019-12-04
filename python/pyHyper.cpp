@@ -50,6 +50,7 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
            "Grab all axes")
       .def("getN123", (long long (hypercube::*)() const) & hypercube::getN123,
            "Grab the number of samples")
+      .def("clone",(std::shared_ptr<hypercube>(hypercube::*)() const) & hypercube::clone," Clone hypercube")
       .def("getNdim", (int (hypercube::*)() const) & hypercube::getNdim,
            "Get the number of axes")
       .def("getNdimG1", (int (hypercube::*)() const) & hypercube::getNdimG1,
@@ -60,6 +61,10 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
       .def("sameSize",
            (bool (hypercube::*)(const std::shared_ptr<hypercube> &) const) &
                hypercube::sameSize,
-           "Check to see if hypercube is the same size");
+           "Check to see if hypercube is the same size")
+      .def("checkSame",
+           (bool (hypercube::*)(const std::shared_ptr<hypercube> &) const) &
+               hypercube::checkSame,
+           "Check to see if hypercube is the same space");
 }  // namespace SEP
 }  // namespace SEP
