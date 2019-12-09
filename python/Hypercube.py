@@ -78,7 +78,7 @@ class hypercube:
 
     def clone(self):
         """Clone hypercube"""
-        x=hypercube(hypercube=self.getCpp())
+        x=hypercube(hypercube=self.getCpp().clone())
         return x
 
     def getNdim(self):
