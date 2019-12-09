@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
-find_package (Python3 COMPONENTS Interpreter   REQUIRED)
+find_package(pybind11)
+
 
 if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)

@@ -52,22 +52,22 @@ class hypercube:
                 isSet = True
         if "os" in kw:
             for i in range(len(kw["os"]) - len(self.axes)):
-                self.axes.append(axis(1))
+                self.axes.append(axis(n=1))
             for i in range(len(kw["os"])):
                 self.axes[i].o = kw["os"][i]
         if "ds" in kw:
             for i in range(len(kw["ds"]) - len(self.axes)):
-                self.axes.append(axis(1))
+                self.axes.append(axis(n=1))
             for i in range(len(kw["ds"])):
                 self.axes[i].d = kw["ds"][i]
         if "labels" in kw:
             for i in range(len(kw["labels"]) - len(self.axes)):
-                self.axes.append(axis(1))
+                self.axes.append(axis(n=1))
             for i in range(len(kw["labels"])):
                 self.axes[i].label = kw["labels"][i]
         if "units" in kw:
             for i in range(len(kw["units"]) - len(self.axes)):
-                self.axes.append(axis(1))
+                self.axes.append(axis(n=1))
             for i in range(len(kw["units"])):
                 self.axes[i].unit = kw["units"][i]
         if "hypercube" in kw:
@@ -78,7 +78,7 @@ class hypercube:
 
     def clone(self):
         """Clone hypercube"""
-        x=Hypercube.hypercube(hypercube=self.getCpp())
+        x=hypercube(hypercube=self.getCpp().clone())
         return x
 
     def getNdim(self):
