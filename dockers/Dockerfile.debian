@@ -5,7 +5,7 @@ RUN apt-get -y update &&\
   apt-get -y clean
 
 RUN  git clone   http://zapad.Stanford.EDU/bob/hypercube.git   /opt/hypercube/src && \
-    mkdir /opt/hypercube/build && \
+    mkdir  /opt/hypercube/build && \
     cd /opt/hypercube/build &&\
     cmake -DCMAKE_INSTALL_PREFIX=/opt/SEP ../src &&\
     make install &&\
