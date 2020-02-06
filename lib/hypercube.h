@@ -134,7 +134,30 @@ class hypercube {
     as.push_back(a6);
     setAxes(as);
   }
+  //! Create a hypercube from six axes
+  /*!
+    \param a1 First axis
+    \param a2 Second axis
+    \param a3 Third axis
+    \param a4 Fourth axis
+    \param a5 Fifth axis
+    \param a6 Sixth axis
+    \param a7 Seventh axis
+  */
+  hypercube(const SEP::axis &a1, const SEP::axis &a2, const SEP::axis &a3,
+            const SEP::axis &a4,const SEP::axis &a5,const SEP::axis &a6,
+            const SEP::axis &a7) {
+    std::vector<SEP::axis> as;
+    as.push_back(a1);
+    as.push_back(a2);
+    as.push_back(a3);
+    as.push_back(a4);
+    as.push_back(a5);
+    as.push_back(a6);
+        as.push_back(a7);
 
+    setAxes(as);
+  }
   //! Check to see if two hypercubes are the same
   /*!
     \param hyper Hypercube to compare to
