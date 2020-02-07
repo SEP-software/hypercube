@@ -133,7 +133,7 @@ class hypercube:
                             ax6 = self.axes[5].getCpp()
                             if len(self.axes) >6:
                                 ax7 = self.axes[6].getCpp()
-                                self.cppMode=pyHpyercube.hypercube(
+                                self.cppMode=pyHypercube.hypercube(
                                     ax1,ax2,ax3,ax4,ax5,ax6,ax7)
                             else:
                                 self.cppMode = pyHypercube.hypercube(
