@@ -107,3 +107,7 @@ def testGetCpp2():
     for i in range(5):
         ax = k.getAxis(i + 1)
         checkAxis(ax, nk[i], ok[i], dk[i], labelk[i], unitk[i])
+
+
+if __name__ == '__main__':
+    unittest.main()
