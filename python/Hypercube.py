@@ -110,7 +110,7 @@ class hypercube:
     
     def checkSame(self,hyper):
         """CHeck to see if hypercube is the same space"""
-        self.cppMode.checkSame(self.cppMode)
+        return self.cppMode.checkSame(self.cppMode)
 
 
     def addAxis(self, axis):

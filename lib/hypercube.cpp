@@ -32,25 +32,34 @@ std::vector<axis> hypercube::getAxes(const int nmin) const {
   return ax;
 }
 bool hypercube::checkSame(const std::shared_ptr<hypercube> hyper2) const {
-  if (hyper2->getAxes().size() != axes.size())
+  if (hyper2->getAxes().size() != axes.size()){
+    return False;
     throw SEPException("Axes not the same length");
+  }
   for (int i = 0; i < axes.size(); i++) {
     const axis a = hyper2->getAxis(i + 1);
-    if (a.n != axes[i].n)
+    if (a.n != axes[i].n){
+    return false;
+
       throw SEPException(std::string("Axis ") + std::to_string(i + 1) +
                          std::string(" n do not match ") +
                          std::to_string(axes[i].n) + std::string(" ") +
                          std::to_string(a.n));
-    if (fabs((a.d - axes[i].d) / a.d) > 1e-3)
+    }
+    if (fabs((a.d - axes[i].d) / a.d) > 1e-3){
+      return false;
       throw SEPException(std::string("Axis ") + std::to_string(i + 1) +
                          std::string(" d do not match ") +
                          std::to_string(axes[i].d) + std::string(" ") +
                          std::to_string(a.d));
-    if (fabs((a.o - axes[i].o) / a.d) > 1e-3)
+    }
+    if (fabs((a.o - axes[i].o) / a.d) > 1e-3){
+      return false;
       throw SEPException(std::string("Axis ") + std::to_string(i + 1) +
                          std::string(" o do not match  ") +
                          std::to_string(axes[i].o) + std::string(" ") +
                          std::to_string(a.o));
+    }
   }
   return true;
 }
