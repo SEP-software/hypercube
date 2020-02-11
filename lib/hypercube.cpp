@@ -33,7 +33,7 @@ std::vector<axis> hypercube::getAxes(const int nmin) const {
 }
 bool hypercube::checkSame(const std::shared_ptr<hypercube> hyper2) const {
   if (hyper2->getAxes().size() != axes.size()){
-    return False;
+    return false;
     throw SEPException("Axes not the same length");
   }
   for (int i = 0; i < axes.size(); i++) {
