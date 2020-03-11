@@ -13,6 +13,7 @@ dataType SEP::toElementType(const std::string &name) {
   if (name == "INT") return DATA_INT;
   if (name == "FLOAT") return DATA_FLOAT;
   if (name == "COMPLEX") return DATA_COMPLEX;
+  if (name == "COMPLEXDOUBLE") return DATA_COMPLEXDOUBLE;
   if (name == "DOUBLE") return DATA_DOUBLE;
   if (name == "SHORT") return DATA_SHORT;
   return DATA_UNKNOWN;
@@ -40,6 +41,9 @@ std::string SEP::getTypeString(const dataType typ) {
     case DATA_DOUBLE:
       return "DOUBLE";
       break;
+    case DATA_COMPLEXDOUBLE:
+      return "COMPLEXDOUBLE";
+      break;
     default:
       throw(SEPException(std::string("Unknown data type")));
   }
@@ -54,6 +58,9 @@ size_t SEP::getDataTypeSize(const dataType typ) {
       break;
     case DATA_FLOAT:
       return sizeof(float);
+      break;
+    case DATA_COMPLEXDOUBLE:
+      return sizeof(std::complex<double>);
       break;
     case DATA_COMPLEX:
       return sizeof(std::complex<float>);

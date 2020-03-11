@@ -11,6 +11,7 @@ enum dataType {
   DATA_FLOAT,    /// 4-byte float
   DATA_COMPLEX,  /// 2 4-byte floats using c++11 templates
   DATA_DOUBLE,   /// 8-byte float
+  DATA_COMPLEXDOUBLE,   /// 16-byte double
   DATA_SHORT,    /// 2-byte integer
   DATA_UNKNOWN   /// Unspecifed type
 };
