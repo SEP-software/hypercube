@@ -90,6 +90,13 @@ class hypercube:
         """Clone hypercube"""
         x=hypercube(hypercube=self.getCpp().clone())
         return x
+    
+    def subCube(self,nw,fw,jw):
+        """Return a sub-cube"""
+        axes=[]
+        for i in range(len(self.axes)):
+            axes.append(axis(n=nw[i],o=axes[i].o+axes[i].d*fw[i],d=axes[i].d*jw[i],label=axes[i].label,unit=axes[i].unit))
+        return hypercube(axes=axes)
 
     def getNdim(self):
         """Return the number of dimensions"""
