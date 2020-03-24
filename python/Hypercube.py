@@ -28,6 +28,16 @@ class axis:
             self.label = kw["axis"].label
             self.unit = kw["axis"].unit
 
+    def __str__(self):
+        """Define print method for class"""
+        if self.unit!="":
+            return "n=%d o=%f d=%f label=%s unit=%s"(self.n,self.o,self.d,self.label,self.unit)
+        elif self.label!="":
+            return "n=%d o=%f d=%f label=%s"(self.n,self.o,self.d,self.label)
+        else:
+            return "n=%d o=%f d=%f"(self.n,self.o,self.d,self.label,self.unit)
+
+
     def getCpp(self):
         """Return a c++ version of the python representation"""
         return pyHypercube.axis(self.n, self.o, self.d, self.label, self.unit)
@@ -112,6 +122,12 @@ class hypercube:
         """CHeck to see if hypercube is the same space"""
         return self.cppMode.checkSame(self.cppMode)
 
+    def __str__(self):
+        """Define print method for hypercube class"""
+        x=""
+        for i in range(len(self.axes)):
+            x="Axis %d: %s\n"%(i+1,self.axes[i])
+        return x
 
     def addAxis(self, axis):
         """Add an axis to the hypercube"""
