@@ -94,7 +94,6 @@ class hypercube:
     def subCube(self,nw,fw,jw):
         """Return a sub-cube"""
         axes=[]
-        print(nw,"=nw axes=",axes)
         for i in range(len(self.axes)):
             axes.append(axis(n=nw[i],o=self.axes[i].o+self.axes[i].d*fw[i],d=self.axes[i].d*jw[i],label=self.axes[i].label,unit=self.axes[i].unit))
         return hypercube(axes=axes)
