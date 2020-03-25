@@ -96,7 +96,7 @@ class hypercube:
         axes=[]
         print(nw,"=nw axes=",axes)
         for i in range(len(self.axes)):
-            axes.append(axis(n=nw[i],o=axes[i].o+axes[i].d*fw[i],d=axes[i].d*jw[i],label=axes[i].label,unit=axes[i].unit))
+            axes.append(axis(n=nw[i],o=self.axes[i].o+self.axes[i].d*fw[i],d=self.axes[i].d*jw[i],label=self.axes[i].label,unit=self.axes[i].unit))
         return hypercube(axes=axes)
 
     def getNdim(self):
