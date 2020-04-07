@@ -1,16 +1,16 @@
 #ifndef HEADER_IO_H
 #define HEADER_IO_H 1
+#include "SEPException.h"
+#include "ioTypes.h"
 #include <map>
 #include <memory>
 #include <vector>
-#include "SEPException.h"
-#include "ioTypes.h"
 
 namespace SEP {
 /*!
 Basic key class. Just contains name and data type */
 class key {
- public:
+public:
   //! Create key
   /*!
     \param name the name of the key
@@ -26,15 +26,15 @@ class key {
 
   std::string name() const { return _name; }
 
- private:
-  std::string _name;  /// Name of the key
-  dataType _type;     /// Datatype for key
+private:
+  std::string _name; /// Name of the key
+  dataType _type;    /// Datatype for key
 };
 
 /*!
  Class containing a collection of keys and values */
 class header {
- public:
+public:
   //! Create header
   /*!
     \param keys List of keys associated with header
@@ -78,7 +78,7 @@ class header {
   /*!
     \param head  All of the header values
   */
-  void setHeaders(std::vector<std::vector<unsigned char>>& head);
+  void setHeaders(std::vector<std::vector<unsigned char>> &head);
   //! Get all float keys
   /*!
     \param name Name of the key to set
@@ -157,7 +157,7 @@ class header {
   //! Clone headers
   std::shared_ptr<header> clone();
 
- private:
+private:
   //!  Get index of a given key
   /*!
     \param name Name of key to grab index of
@@ -174,13 +174,13 @@ class header {
     return _key_offset.at(name);
   }
 
-  std::vector<key> _keys;                     /// List of keys
-  std::map<std::string, size_t> _key_index;   /// Index of each key
-  std::map<std::string, size_t> _key_offset;  /// Offset (in byte) of givern key
-  std::vector<std::vector<unsigned char>> _head;  /// Headers
+  std::vector<key> _keys;                    /// List of keys
+  std::map<std::string, size_t> _key_index;  /// Index of each key
+  std::map<std::string, size_t> _key_offset; /// Offset (in byte) of givern key
+  std::vector<std::vector<unsigned char>> _head; /// Headers
 
-  int _nsz;  /// Number of headers
+  int _nsz; /// Number of headers
 };
 
-}  // namespace SEP
+} // namespace SEP
 #endif
