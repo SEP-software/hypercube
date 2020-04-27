@@ -1,11 +1,11 @@
-#include <pybind11/pybind11.h>
 #include "SEPException.h"
 #include "hypercube.h"
+#include <pybind11/pybind11.h>
 namespace py = pybind11;
 namespace SEP {
 
 PYBIND11_MODULE(pyHypercube, clsHyper) {
-  py::class_<axis>(clsHyper, "axis")  //
+  py::class_<axis>(clsHyper, "axis") //
       .def(py::init<>(), "Initlialize an empty axis")
       .def(py::init<const int, const float, const float, const std::string &,
                     const std::string &>(),
@@ -32,11 +32,14 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
            "Initalize from three axes")
       .def(py::init<const axis &, const axis &, const axis &, const axis &>(),
            "Initalize from four axes")
-      .def(py::init<const axis &, const axis &, const axis &, const axis &, const axis &>(),
+      .def(py::init<const axis &, const axis &, const axis &, const axis &,
+                    const axis &>(),
            "Initalize from five axes")
-      .def(py::init<const axis &, const axis &, const axis &, const axis &, const axis &, const axis &>(),
+      .def(py::init<const axis &, const axis &, const axis &, const axis &,
+                    const axis &, const axis &>(),
            "Initalize from six axes")
-      .def(py::init<const axis &, const axis &, const axis &, const axis &, const axis &, const axis &, const axis &>(),
+      .def(py::init<const axis &, const axis &, const axis &, const axis &,
+                    const axis &, const axis &, const axis &>(),
            "Initalize from seven axes")
 
       .def("setAxis",
@@ -52,7 +55,10 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
            "Grab all axes")
       .def("getN123", (long long (hypercube::*)() const) & hypercube::getN123,
            "Grab the number of samples")
-      .def("clone",(std::shared_ptr<hypercube>(hypercube::*)() const) & hypercube::clone," Clone hypercube")
+      .def("clone",
+           (std::shared_ptr<hypercube>(hypercube::*)() const) &
+               hypercube::clone,
+           " Clone hypercube")
       .def("getNdim", (int (hypercube::*)() const) & hypercube::getNdim,
            "Get the number of axes")
       .def("getNdimG1", (int (hypercube::*)() const) & hypercube::getNdimG1,
@@ -68,5 +74,5 @@ PYBIND11_MODULE(pyHypercube, clsHyper) {
            (bool (hypercube::*)(const std::shared_ptr<hypercube> &) const) &
                hypercube::checkSame,
            "Check to see if hypercube is the same space");
-}  // namespace SEP
-}  // namespace SEP
+} // namespace SEP
+} // namespace SEP
