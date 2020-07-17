@@ -206,7 +206,7 @@ class hypercube {
   void deallocate() { axes.clear(); }
 
   //! Delete hypercube object
-  ~hypercube() { this->deallocate(); }
+  virtual ~hypercube() { this->deallocate(); }
 
   //! Return up to nmax axes from the hypercube
   /*!
@@ -235,7 +235,6 @@ class hypercube {
 */
   bool sameSize(const std::shared_ptr<hypercube> &other) const;
 
-  virtual ~hypercube(){;}
 
  private:
   //! Internal function to initialize a hypercube object
