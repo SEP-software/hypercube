@@ -235,6 +235,8 @@ class hypercube {
 */
   bool sameSize(const std::shared_ptr<hypercube> &other) const;
 
+  virtual ~hypercube(){;}
+
  private:
   //! Internal function to initialize a hypercube object
   /*!
