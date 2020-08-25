@@ -10,7 +10,7 @@ set(PYTHON_DIR "lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
   target_include_directories(
     pySEPException
     PUBLIC ${PYTHON_INCLUDE_DIR}
-           ${pybind11_INCLUDE_DIR}
+            $<INSTALL_INTERFACE:../external/pybind11/include>
            $<INSTALL_INTERFACE:include>
            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}../src>)
 
@@ -19,7 +19,7 @@ set(PYTHON_DIR "lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
   target_include_directories(
     pyHypercube
     PUBLIC ${PYTHON_INCLUDE_DIR}
-           ${pybind11_INCLUDE_DIR}
+            $<INSTALL_INTERFACE:../external/pybind11/include>
            $<INSTALL_INTERFACE:include>
            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}../src>)
 
@@ -28,7 +28,7 @@ set(PYTHON_DIR "lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
   target_include_directories(
     pyDebug
     PUBLIC ${PYTHON_INCLUDE_DIR}
-           ${pybind11_INCLUDE_DIR}
+            $<INSTALL_INTERFACE:../external/pybind11/include>
            $<INSTALL_INTERFACE:include>
            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}../src>)
   install(TARGETS pyHypercube pySEPException pyDebug
