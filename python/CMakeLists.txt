@@ -16,6 +16,8 @@ set(PYTHON_DIR "lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
 
   pybind11_add_module(pyHypercube MODULE pyHyper.cpp)
   target_link_libraries(pyHypercube PRIVATE hypercube)
+set_property(TARGET pyHypercube PROPERTY INTERPROCEDURAL_OPTIMIZATION False)
+
 
   target_include_directories(
     pyHypercube
