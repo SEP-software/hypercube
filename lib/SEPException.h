@@ -14,6 +14,7 @@ class SEPException : public std::exception {
   std::string getMessage() const {
     return message;
   }  ///< Return exception as string
+ ~SEPException(){;}
  private:
   std::string message = "";  ///< Storage for exception text
 };
