@@ -13,7 +13,7 @@ hypercube.cpp
 
 
 
-add_library(hypercube ${SOURCES} ${INCLUDES})
+add_library(hypercube  SHARED ${SOURCES} ${INCLUDES})
 
 target_link_libraries(hypercube m)
 target_include_directories(
