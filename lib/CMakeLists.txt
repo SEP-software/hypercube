@@ -18,7 +18,7 @@ add_library(hypercube  SHARED ${SOURCES} ${INCLUDES})
 target_link_libraries(hypercube m)
 target_include_directories(
   hypercube INTERFACE
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<INSTALL_INTERFACE:include>
 )
 
