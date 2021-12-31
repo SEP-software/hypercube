@@ -13,6 +13,7 @@ enum dataType {
   DATA_DOUBLE,   /// 8-byte float
   DATA_COMPLEXDOUBLE,   /// 16-byte double
   DATA_SHORT,    /// 2-byte integer
+  DATA_LONG_LONG, //8-byte int
   DATA_UNKNOWN   /// Unspecifed type
 };
 

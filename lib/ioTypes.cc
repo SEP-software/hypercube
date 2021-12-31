@@ -10,6 +10,7 @@ using namespace SEP;
 \param name String name of element type */
 dataType SEP::toElementType(const std::string &name) {
   if (name == "BYTE") return DATA_BYTE;
+  if (name == "LONG_LONG") return DATA_LONG_LONG;
   if (name == "INT") return DATA_INT;
   if (name == "FLOAT") return DATA_FLOAT;
   if (name == "COMPLEX") return DATA_COMPLEX;
@@ -31,6 +32,9 @@ std::string SEP::getTypeString(const dataType typ) {
       break;
     case DATA_COMPLEX:
       return "COMPLEX";
+      break;
+    case DATA_LONG_LONG:
+      return "LONG_LONG";
       break;
     case DATA_INT:
       return "INT";
