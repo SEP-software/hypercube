@@ -23,10 +23,8 @@ target_include_directories(
 )
 
 
-if(NOT SUPPORT_LIBRARIES_BUILD)
   install(FILES ${INCLUDES} DESTINATION include)
     install(TARGETS hypercube DESTINATION lib EXPORT HypercubeTargets)
-endif(NOT SUPPORT_LIBRARIES_BUILD)
 
 
 if(BUILD_TEST)
