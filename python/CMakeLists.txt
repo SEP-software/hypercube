@@ -1,5 +1,5 @@
 project(hypercube-python)
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.8)
 
 set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
